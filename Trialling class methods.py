@@ -1,45 +1,23 @@
-# Imports each and every method and class 
-# of module tkinter and tkinter.ttk
+
+# Import Module
 from tkinter import *
-from tkinter.ttk import *
-
-class GFG:
-	def __init__(self, master = None):
-		self.master = master
-
-		# Calls create method of class GFG
-		self.create()
-
-	def create(self):
-
-		# This creates a object of class canvas
-		self.canvas = Canvas(self.master)
-
-		# This creates a line of length 200 (straight horizontal line)
-		self.canvas.create_line(15, 25, 200, 25)
-
-		# This creates a lines of 300 (straight vertical dashed line)
-		self.canvas.create_line(300, 35, 300, 200, dash = (5, 2))
-		
-		# This creates a triangle (triangle can be created by other methods also)
-		self.canvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
-		
-		# This pack the canvas to the main window and make it expandable
-		self.canvas.pack(fill = BOTH, expand = True)
-
-if __name__ == "__main__":
-	
-	# object of class Tk, responsible for creating
-	# a tkinter toplevel window
-	master = Tk()
-	geeks = GFG(master)
-
-	# This sets the title to Lines
-	master.title("Lines")
-
-	# This sets the geometry and position of window
-	# on the screen
-	master.geometry("400x250")
-
-	# Infinite loop breaks only by interrupt
-	master.mainloop()
+from PIL import Image, ImageTk
+ 
+# Create Tkinter Object
+root = Tk()
+root.geometry("1200x750")
+# Read the Image
+image = Image.open("Lean-Budgeting-Part-One 1.png")
+ 
+# Resize the image using resize() method
+resize_image = image.resize((1200, 250))
+ 
+img = ImageTk.PhotoImage(resize_image)
+ 
+# create label and add resize image
+label1 = Label(image=img)
+label1.image = img
+label1.place(x = 0, y = 450)
+ 
+# Execute Tkinter
+root.mainloop()
