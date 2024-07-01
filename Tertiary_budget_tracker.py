@@ -20,6 +20,7 @@ def popup():
 # Funtion to open signup window when button is clicked.
 def open_signup_Window():
     # Function to validate user input and submit it to a file.
+    # Direct user to building profile page after signing in.
     def signup():
 
         first_name = first_name_var.get()
@@ -52,7 +53,8 @@ def open_signup_Window():
             else:
                 with open("Existing Users.txt", "a") as file:
                     file.write(f"{username}\n")
-                    file.write(f"Full name: {first_name} {last_name} Username: {username} Password: {password}\n")
+                    file.write(f"Full name: {first_name} {last_name} " +
+                               f"Username: {username} Password: {password}\n")
                 print("First name: " + first_name)
                 print("Last name: " + last_name)
                 print("Username: " + username)
@@ -64,6 +66,28 @@ def open_signup_Window():
                 password_var.set("")
                 confirm_password_var.set("")
                 messagebox.showinfo("Successful", "Signed up successfully")
+                first_window.destroy()
+
+                # Create building profile page, user will be directed here 
+                # after signing up.
+                building_profile_window = tk.Tk()
+                building_profile_window.geometry("1200x750")
+                building_profile_window.title("Building my profile")
+                building_profile_window.resizable(False, False)
+
+                # Create window content with labels, canvas, and buttons.
+                canvas = Canvas(building_profile_window, 
+                                height = 100, 
+                                width = 1210, 
+                                bg = "CadetBlue2", )
+                
+                
+
+                # Placing the labels and entries.
+                canvas.place(x = 0, y = 20)
+
+                building_profile_window.mainloop()
+
         else:
             messagebox.showerror("Invalid input", "There are missing " +
                                  "fields.\nPlease enter all fields.")
@@ -86,10 +110,11 @@ def open_signup_Window():
                     height = 50, 
                     width = 350, 
                     bg = "CadetBlue2")
-    title_lbl = Label(signup_window, 
+    title_lbl = tk.Label(signup_window, 
                       text = "Sign up", 
-                      font = ("Helvetica", 15))
-    subtitle_lbl = Label(signup_window, 
+                      font = ("Helvetica", 15),
+                      bg = "CadetBlue2")
+    subtitle_lbl = tk.Label(signup_window, 
                         text = "Create an account",
                         font = ("Helvetica", 15))
     login_btn = tk.Button(signup_window,
@@ -180,6 +205,10 @@ def open_login_Window():
                     username_var.set("")
                     password_var.set("")
                     messagebox.showinfo("Successful", "Log in successful.")
+                elif not user_exists:
+                    messagebox.showerror("Unsuccessful", "You have entered " +
+                                     "an invalid username or password. " +
+                                     "Please try again or sign up.")
             except FileNotFoundError:
                 messagebox.showerror("Unsuccessful", "You have entered " +
                                      "an invalid username or password. " +
@@ -194,7 +223,20 @@ def open_login_Window():
     login_window.geometry("300x350")
     login_window.resizable(False, False)
 
+    # # Calculate center position. Keep windows centred each time it's opened.
+    # window_width = 300
+    # window_height = 350
+    # screen_width = login_window.winfo_screenwidth()
+    # screen_height = login_window.winfo_screenheight()
+
+    # x_position = (screen_width - window_width) // 2
+    # y_position = (screen_height - window_height) // 4
+
+    # # Set window geometry
+    # login_window.geometry(f"{window_width} x {window_height} + {x_position} + {y_position}")
+
     # Declaring username and password as string variables.
+
     username_var = tk.StringVar()
     password_var = tk.StringVar()
 
@@ -202,12 +244,12 @@ def open_login_Window():
     canvas = Canvas(login_window, 
                     height = 50, 
                     width = 350, 
-                    bg = "CadetBlue2", 
-    )
-    title_lbl = Label(login_window, 
-                      text = "Log in", 
-                      font = ("Helvetica", 15))
-    subtitle_lbl = Label(login_window, 
+                    bg = "CadetBlue2")
+    title_lbl = tk.Label(login_window, 
+                         text = "Log in", 
+                         font = ("Helvetica", 15),
+                         bg = "CadetBlue2")
+    subtitle_lbl = tk.Label(login_window,
                          text = "Log in to your account",
                          font = ("Helvetica", 15))
     open_signup_btn = tk.Button(login_window,
@@ -326,18 +368,18 @@ label1.place(x = 0, y = 450)
 
 first_window.mainloop()
 
-# Create building profile page, user will be directed here after signing up.
-if first_window.destroy():
-    building_profile_window = tk.Tk()
-    building_profile_window.geometry("1200x750")
-    building_profile_window.title("Building my profile")
-    building_profile_window.resizable(False, False)
+# # Create building profile page, user will be directed here after signing up.
+# if first_window.destroy():
+#     building_profile_window = tk.Tk()
+#     building_profile_window.geometry("1200x750")
+#     building_profile_window.title("Building my profile")
+#     building_profile_window.resizable(False, False)
 
-    # Create a coloured box for the top where navigation bar will be.
-    canvas = Canvas(first_window, 
-                    height = 100, 
-                    width = 1210, 
-                    bg = "CadetBlue2", )
-    canvas.place(x = 0, y = 20)
+#     # Create a coloured box for the top where navigation bar will be.
+#     canvas = Canvas(first_window, 
+#                     height = 100, 
+#                     width = 1210, 
+#                     bg = "CadetBlue2", )
+#     canvas.place(x = 0, y = 20)
 
-    building_profile_window.mainloop()
+#     building_profile_window.mainloop()
