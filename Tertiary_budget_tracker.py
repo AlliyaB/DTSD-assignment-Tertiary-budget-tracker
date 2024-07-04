@@ -1,11 +1,13 @@
-# Import tkinter.
+# Import tkinter, date, and datetime.
 import tkinter as tk
 from tkinter import  *
 from tkinter.ttk import *
 from tkinter import messagebox
 from PIL import ImageTk, Image 
+from datetime import datetime
+from datetime import date
 
-# Create a function to double check the user wants to exit before exiting.
+# Function to ensure the user wants to exit the first_window.
 def popup():
   response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                   "NOT be saved.\nAre you sure you want " +
@@ -13,7 +15,8 @@ def popup():
   icon='warning')
   print(response)
   if response == "yes":
-    confirm_btn = Button(first_window, command = first_window.quit)
+    confirm_btn = Button(first_window, 
+                         command = first_window.quit)
     confirm_btn.pack()
     first_window.destroy()
 
@@ -22,6 +25,42 @@ def open_signup_Window():
     # Function to validate user input and submit it to a file.
     # Direct user to building profile page after signing in.
     def signup():
+        # Function to ensure the user wants to exit the building_profile_window.
+        def popup():
+            response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                            "NOT be saved.\nAre you sure you want " +
+                                            "to exit the program?", 
+            icon = 'warning')
+            print(response)
+            if response == "yes":
+                confirm_btn = Button(building_profile_window, 
+                                     command = building_profile_window.quit)
+                confirm_btn.pack()
+                building_profile_window.destroy()
+        
+        def calculate_age(birth_date: datetime) -> int:
+            """Function to carry out age calculation based off birthdate 
+            (dd/mm/yyyy).
+            """
+            # Get today's date.
+            today: date = date.today()
+            # Calculate the year difference between today and the date of birth.
+            difference: int = today.year - birth_date.year
+            # Find out if today preceeds the date of birth this year.
+            today_preceeds_DOB: int = int((today.month, today.day) <
+                                        (birth_date.month, birth_date.day))
+            age: int = difference - today_preceeds_DOB
+            return age
+        
+        # Function to output message when tertiary button is clicked.
+        def output_message():
+            tertiary_status = tertiary_status_var.get()
+            if tertiary_status == "1":
+                messagebox.showinfo("Target market", "This program is specifically designed for tertiary students like you.")
+            elif tertiary_status == "2":
+                messagebox.showinfo("Not target market", "This program is specifically designed for tertiary students.\nHowever you're welcome to it's benefits.")
+            else:
+                messagebox.showerror("Invalid input", "There are missing fields. Please select a tertiary status.")
 
         first_name = first_name_var.get()
         last_name = last_name_var.get()
@@ -65,26 +104,102 @@ def open_signup_Window():
                 username_var.set("")
                 password_var.set("")
                 confirm_password_var.set("")
-                messagebox.showinfo("Successful", "Signed up successfully")
+                messagebox.showinfo("Successful", "Sign up successful." +
+                                    f"\nWelcome {username}")
                 first_window.destroy()
 
                 # Create building profile page, user will be directed here 
                 # after signing up.
+
                 building_profile_window = tk.Tk()
-                building_profile_window.geometry("1200x750")
-                building_profile_window.title("Building my profile")
+                building_profile_window.geometry("300x350")
+                building_profile_window.title("Building profile")
                 building_profile_window.resizable(False, False)
+
+                # Print today's date, neccassary for calculating the users age.
+                # Print todays date.
+                today = date.today()
+                d = today.strftime("%d/%m/%y")
+                print(f"Date: {d}")
+
+                # Declaring birthdate, tertiary status, and knowledge as string variables.
+                birthdate_var = tk.StringVar()
+                tertiary_status_var = StringVar(building_profile_window, "1") 
+                knowledge_var = tk.StringVar()
 
                 # Create window content with labels, canvas, and buttons.
                 canvas = Canvas(building_profile_window, 
-                                height = 100, 
-                                width = 1210, 
+                                height = 50, 
+                                width = 350, 
                                 bg = "CadetBlue2", )
+                title_lbl = tk.Label(building_profile_window, 
+                                     text = "Building profile:", 
+                                     font = ("Helvetica", 15),
+                                     bg = "CadetBlue2")
+                subtitle_lbl = tk.Label(building_profile_window, 
+                                       text = f"Let's get to know you better!\nPlease enter the following",
+                                       font = ("Helvetica", 10))
+                exit = tk.Button(building_profile_window,
+                                 text = "Exit",
+                                 width = 10,
+                                 height = 2,
+                                 fg = "black",
+                                 bg = "grey",
+                                 command = popup)    
                 
+                next_btn = tk.Button(building_profile_window,
+                           text = "Next", 
+                           width = 7,
+                           height = 1,
+                           fg = "black",
+                           bg = "gold")
                 
+                birthdate_lbl = tk.Label(building_profile_window, 
+                              text = "Birthdate (dd/mm/yyyy):", 
+                              font = ("Helvetica", 10, "bold"))
+                tertiary_lbl = tk.Label(building_profile_window, 
+                                        text = "Tertiary status:", 
+                                        font = ("Helvetica", 10, "bold"))
+                knowledge_lbl = tk.Label(building_profile_window, 
+                                        text = "Knowledge of budgeting:", 
+                                        font = ("Helvetica", 10, "bold"))
 
+                # Entrys.
+                birthdate_entry = tk.Entry(building_profile_window, 
+                                            textvariable = birthdate_var)
+
+                # Dictionary to create multiple buttons. 
+                tertiary_status_dict = {"Current student" : "1", 
+                                        "Other" : "2"} 
+                x_coord = 20
+                # Use a loop to create multiple radiobuttons.
+                for (text, value) in tertiary_status_dict.items(): 
+                    tertiary_status_btn = Radiobutton(building_profile_window, 
+                                                      text = text, 
+                                                      variable = tertiary_status_var,
+                                                      value = value,
+                                                      command = output_message)
+                    tertiary_status_btn.place(x = x_coord, y = 212.5)
+                    x_coord += 112 # Provide distance between buttons.
+
+                knowledge_entry = tk.Entry(building_profile_window, 
+                                           textvariable = knowledge_var)
+                
                 # Placing the labels and entries.
                 canvas.place(x = 0, y = 20)
+                title_lbl.place(x = 10, y = 34)
+                subtitle_lbl.place(x = 60, y = 80)
+                exit.place(x = 200, y = 27)
+                next_btn.place(x = 120, y = 315)
+
+                birthdate_lbl.place(x = 20, y = 130)
+                birthdate_entry.place(x = 20, y = 155)
+
+                tertiary_lbl.place(x = 20, y = 187.5)
+                #tertiary_status_btn.place(x = 20, y = 212.5)
+
+                knowledge_lbl.place(x = 20, y = 245)
+                knowledge_entry.place(x = 20, y = 270)
 
                 building_profile_window.mainloop()
 
@@ -111,7 +226,7 @@ def open_signup_Window():
                     width = 350, 
                     bg = "CadetBlue2")
     title_lbl = tk.Label(signup_window, 
-                      text = "Sign up", 
+                      text = "Sign up:", 
                       font = ("Helvetica", 15),
                       bg = "CadetBlue2")
     subtitle_lbl = tk.Label(signup_window, 
@@ -148,7 +263,7 @@ def open_signup_Window():
                            bg = "gold",
                            command = signup)
 
-    # Entrys and validation.
+    # Entrys.
     first_name_entry = tk.Entry(signup_window, 
                                 textvariable = first_name_var)
     last_name_entry = tk.Entry(signup_window, 
@@ -204,7 +319,8 @@ def open_login_Window():
                     print(f"Password: {password}")
                     username_var.set("")
                     password_var.set("")
-                    messagebox.showinfo("Successful", "Log in successful.")
+                    messagebox.showinfo("Successful", f"Log in successful." +
+                                        f"\nWelcome back {username}")
                 elif not user_exists:
                     messagebox.showerror("Unsuccessful", "You have entered " +
                                      "an invalid username or password. " +
@@ -236,7 +352,6 @@ def open_login_Window():
     # login_window.geometry(f"{window_width} x {window_height} + {x_position} + {y_position}")
 
     # Declaring username and password as string variables.
-
     username_var = tk.StringVar()
     password_var = tk.StringVar()
 
@@ -246,7 +361,7 @@ def open_login_Window():
                     width = 350, 
                     bg = "CadetBlue2")
     title_lbl = tk.Label(login_window, 
-                         text = "Log in", 
+                         text = "Log in:", 
                          font = ("Helvetica", 15),
                          bg = "CadetBlue2")
     subtitle_lbl = tk.Label(login_window,
@@ -315,17 +430,14 @@ open_signup_btn = tk.Button(first_window,
                    height = 2,
                    fg = "black",
                    bg = "darkgrey",
-                   command = open_signup_Window
-)
-
+                   command = open_signup_Window)
 login_btn = tk.Button(first_window,
                    text = "Log in",
                    width = 10,
                    height = 2,
                    fg = "black",
                    bg = "darkgrey",
-                   command = open_login_Window
-)
+                   command = open_login_Window)
 
 # Create exit button.
 exit = tk.Button(first_window,
@@ -334,8 +446,7 @@ exit = tk.Button(first_window,
                    height = 2,
                    fg = "black",
                    bg = "grey",
-                   command = popup
-)
+                   command = popup)
 
 # Place the buttons in a position.
 login_btn.place(x = 900, y = 40)
@@ -367,19 +478,3 @@ label1.image = img
 label1.place(x = 0, y = 450)
 
 first_window.mainloop()
-
-# # Create building profile page, user will be directed here after signing up.
-# if first_window.destroy():
-#     building_profile_window = tk.Tk()
-#     building_profile_window.geometry("1200x750")
-#     building_profile_window.title("Building my profile")
-#     building_profile_window.resizable(False, False)
-
-#     # Create a coloured box for the top where navigation bar will be.
-#     canvas = Canvas(first_window, 
-#                     height = 100, 
-#                     width = 1210, 
-#                     bg = "CadetBlue2", )
-#     canvas.place(x = 0, y = 20)
-
-#     building_profile_window.mainloop()
