@@ -55,12 +55,13 @@ def open_signup_Window():
         # Function to output message when tertiary button is clicked.
         def output_message():
             tertiary_status = tertiary_status_var.get()
+            knowledge = knowledge_var.get()
             if tertiary_status == "1":
                 messagebox.showinfo("Target market", "This program is specifically designed for tertiary students like you.")
             elif tertiary_status == "2":
                 messagebox.showinfo("Not target market", "This program is specifically designed for tertiary students.\nHowever you're welcome to it's benefits.")
             else:
-                messagebox.showerror("Invalid input", "There are missing fields. Please select a tertiary status.")
+                messagebox.showerror("Invalid input", "There are missing fields.\nPlease select a tertiary status.")
 
         first_name = first_name_var.get()
         last_name = last_name_var.get()
@@ -168,11 +169,11 @@ def open_signup_Window():
                 birthdate_entry = tk.Entry(building_profile_window, 
                                             textvariable = birthdate_var)
 
-                # Dictionary to create multiple buttons. 
+                # Dictionary to create multiple options for tertiary status.
                 tertiary_status_dict = {"Current student" : "1", 
                                         "Other" : "2"} 
+                # Use a loop to create multiple radiobuttons for tertiary status.
                 x_coord = 20
-                # Use a loop to create multiple radiobuttons.
                 for (text, value) in tertiary_status_dict.items(): 
                     tertiary_status_btn = Radiobutton(building_profile_window, 
                                                       text = text, 
@@ -182,8 +183,20 @@ def open_signup_Window():
                     tertiary_status_btn.place(x = x_coord, y = 212.5)
                     x_coord += 112 # Provide distance between buttons.
 
-                knowledge_entry = tk.Entry(building_profile_window, 
-                                           textvariable = knowledge_var)
+                # Dictionary to create multiple options for knowledge entry.
+                knowledge_dict = {"Very Poor" : "1",
+                                  "Average" : "3",
+                                  "Excellent" : "5"}
+                
+                # Use a loop to create multiple radiobuttons for knowledge.
+                x_coord = 20
+                for (text, value) in knowledge_dict.items(): 
+                    knowledge_btn = Radiobutton(building_profile_window, 
+                                                text = text, 
+                                                variable = knowledge_var,
+                                                value = value)
+                    knowledge_btn.place(x = x_coord, y = 270)
+                    x_coord += 87
                 
                 # Placing the labels and entries.
                 canvas.place(x = 0, y = 20)
@@ -196,10 +209,8 @@ def open_signup_Window():
                 birthdate_entry.place(x = 20, y = 155)
 
                 tertiary_lbl.place(x = 20, y = 187.5)
-                #tertiary_status_btn.place(x = 20, y = 212.5)
 
                 knowledge_lbl.place(x = 20, y = 245)
-                knowledge_entry.place(x = 20, y = 270)
 
                 building_profile_window.mainloop()
 
