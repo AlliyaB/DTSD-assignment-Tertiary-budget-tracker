@@ -7,19 +7,93 @@ from PIL import ImageTk, Image
 from datetime import datetime
 from datetime import date
 from tkinter import font
+import sys;
 
-# Function to ensure the user wants to exit the first_window.
-def popup():
-  response = messagebox.askquestion("Exit Programme?","Your progress will " +
-                                  "NOT be saved.\nAre you sure you want " +
-                                  "to exit the program?", 
-  icon='warning')
-  print(response)
-  if response == "yes":
-    confirm_btn = Button(first_window, 
-                         command = first_window.quit)
-    confirm_btn.pack()
-    first_window.destroy()
+def create_main_gui():
+    # Function to ensure the user wants to exit the first_window.
+    def popup():
+        response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                        "NOT be saved.\nAre you sure you want " +
+                                        "to exit the program?", 
+        icon='warning')
+        print(response)
+        if response == "yes":
+            confirm_btn = Button(first_window, 
+                                command = first_window.quit)
+            confirm_btn.pack()
+            first_window.destroy()
+    # Create Log in/sign up window.
+    global first_window
+    first_window = tk.Tk()
+    first_window.geometry("1200x750")
+    first_window.title("Log in/Sign up")
+    first_window.resizable(False, False)
+
+    # Display label.
+    program_title = tk.Label(first_window,
+        text = "Tertiary Budget \nTracker             ",
+        font = ("Helvetica", 48))
+    program_title.place(x = 200, y = 250)
+
+    # Create a coloured box for the top where navigation bar will be.
+    canvas = Canvas(first_window, height = 100, width = 1210, bg = "CadetBlue2", )
+
+    # Create Sign up, log in, and exit buttons.
+    open_signup_btn = tk.Button(first_window,
+                    text = "Sign up",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey",
+                    command = open_signup_Window)
+    login_btn = tk.Button(first_window,
+                    text = "Log in",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey",
+                    command = open_login_Window)
+    exit = tk.Button(first_window,
+                    text = "Exit",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "grey",
+                    command = popup)
+
+    # Create a label informing the user about what the program does.
+    info_lbl_one = Label(first_window, text = "Enjoy a budget plan tailored " +
+                    "\nto your financial wants and needs.\n\nBenefit from " +
+                    "helpful tips to\nmanage your money.", 
+                    font = ("Helvetica", 14))
+    info_lbl_two = Label(first_window, text = "Aims to improve financial " +
+                        "stability among New Zealand tertiary students " +
+                        "aged 18-25.", font = ("Helvetica", 10))
+    info_lbl_one.place(x = 800, y = 280)
+    info_lbl_two.place(x = 200, y = 400)
+
+    # Add image to the first window.
+    image = Image.open("Lean-Budgeting-Part-One 1.png")
+    
+    # Resize the image using resize() method
+    resize_image = image.resize((1200, 250))
+    img = ImageTk.PhotoImage(resize_image)
+    
+    # create label and add resize image
+    label1 = Label(image = img)
+    label1.image = img
+
+    # Place labels, buttons, and images in a position.
+    canvas.place(x = 0, y = 20)
+    label1.place(x = 0, y = 450)
+    login_btn.place(x = 900, y = 40)
+    open_signup_btn.place(x = 990, y = 40)
+    exit.place(x = 1110, y = 40)
+    label1.place(x = 0, y = 450)
+
+    first_window.mainloop()
+
+    # Create home window.
 
 # Funtion to open signup window when button is clicked.
 def open_signup_Window():
@@ -113,65 +187,88 @@ def open_signup_Window():
                                             command = profile_window.quit)
                         confirm_btn.pack()
                         profile_window.destroy()
-                if profile_btn:
-                    # Create profile page.
-                    profile_window = tk.Tk()
-                    profile_window.geometry("300x350")
-                    profile_window.title("Profile")
-                    profile_window.resizable(False, False)
 
-                    # Create widow content.
-                    canvas = Canvas(profile_window, 
-                                    height = 50, 
-                                    width = 350, 
+                # Create profile page.
+                global profile_window
+                profile_window = tk.Tk()
+                profile_window.geometry("300x350")
+                profile_window.title("Profile")
+                profile_window.resizable(False, False)
+
+                # Create widow content.
+                canvas = Canvas(profile_window, 
+                                height = 50, 
+                                width = 350, 
+                                bg = "CadetBlue2")
+                title_lbl = tk.Label(profile_window, 
+                                    text = "Profile:", 
+                                    font = ("Helvetica", 15),
                                     bg = "CadetBlue2")
-                    title_lbl = tk.Label(profile_window, 
-                                        text = "Profile:", 
-                                        font = ("Helvetica", 15),
-                                        bg = "CadetBlue2")
-                    edit_btn = tk.Button(profile_window,
-                           text = "Edit", 
-                           width = 7,
-                           height = 1,
-                           fg = "black",
-                           bg = "gold")#Add edit command once function is created.
-                    exit = tk.Button(profile_window,
-                                 text = "Exit",
-                                 width = 10,
-                                 height = 2,
-                                 fg = "black",
-                                 bg = "grey",
-                                 command = exit_profile) 
-                    profile_first_name_lbl = tk.Label(profile_window, 
-                              text = f"First name: {first_name}", 
-                              font = ("Helvetica", 10, "bold"))
-                    profile_last_name_lbl = tk.Label(profile_window, 
-                              text = f"Last name: {last_name}", 
-                              font = ("Helvetica", 10, "bold"))
-                    profile_username_lbl = tk.Label(profile_window, 
-                              text = f"Username: {username}", 
-                              font = ("Helvetica", 10, "bold"))
-                    profile_birthdate_lbl = tk.Label(profile_window, 
-                              text = f"Birthdate: {birthdate}", 
-                              font = ("Helvetica", 10, "bold"))
+                edit_btn = tk.Button(profile_window,
+                        text = "Edit", 
+                        width = 7,
+                        height = 1,
+                        fg = "black",
+                        bg = "gold")#Add edit command once function is created.
+                exit = tk.Button(profile_window,
+                                text = "Exit",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "grey",
+                                command = exit_profile) 
+                profile_first_name_lbl = tk.Label(profile_window, 
+                                                    text = f"First name: {first_name}", 
+                                                    font = ("Helvetica", 11))
+                profile_last_name_lbl = tk.Label(profile_window, 
+                                                    text = f"Last name: {last_name}", 
+                                                    font = ("Helvetica", 11))
+                profile_username_lbl = tk.Label(profile_window, 
+                                                text = f"Username: {username}", 
+                                                font = ("Helvetica", 11))
+                profile_birthdate_lbl = tk.Label(profile_window, 
+                                                    text = f"Birthdate: {birthdate}", 
+                                                    font = ("Helvetica", 11))
+                if tertiary_status == "1":
                     profile_tertiary_status_lbl = tk.Label(profile_window, 
-                              text = f"Tertiary status: {tertiary_status}", 
-                              font = ("Helvetica", 10, "bold"))
+                                                            text = f"Tertiary status: Current student", 
+                                                            font = ("Helvetica", 11))
+                if tertiary_status == "2":
+                    profile_tertiary_status_lbl = tk.Label(profile_window, 
+                                                            text = f"Tertiary status: Other", 
+                                                            font = ("Helvetica", 11))
+                if knowledge == "1":
                     profile_knowledge_lbl = tk.Label(profile_window, 
-                              text = f"Knowledge of budgeting: {knowledge}", 
-                              font = ("Helvetica", 10, "bold"))
-                
-                    # Place window content.
-                    canvas.place(x = 0, y = 20)
-                    title_lbl.place(x = 10, y = 34)
-                    edit_btn.place(x = 120, y = 315)
-                    exit.place(x = 200, y = 27)
-                    profile_first_name_lbl.place(x = 20, y = 120)
-                    profile_last_name_lbl.place(x = 20, y = 160)
-                    profile_username_lbl.place(x = 20, y = 200)
-                    profile_birthdate_lbl.place(x = 20, y = 240)
-                    profile_tertiary_status_lbl.place(x = 20, y = 280)
-                    profile_knowledge_lbl.place(x = 20, y = 320)
+                                                        text = f"Knowledge of budgeting: Very poor", 
+                                                        font = ("Helvetica", 11))
+                if knowledge == "2":
+                    profile_knowledge_lbl = tk.Label(profile_window, 
+                                                        text = f"Knowledge of budgeting: Average", 
+                                                        font = ("Helvetica", 11))
+                if knowledge == "3":
+                    profile_knowledge_lbl = tk.Label(profile_window, 
+                                                        text = f"Knowledge of budgeting: Excellent",
+                                                        font = ("Helvetica", 11))
+                signout_btn = tk.Button(profile_window,
+                                        text = "Signout", 
+                                        width = 7,
+                                        height = 1,
+                                        fg = "black",
+                                        bg = "firebrick1",
+                                        command = signout)
+            
+                # Place window content.
+                canvas.place(x = 0, y = 20)
+                title_lbl.place(x = 10, y = 34)
+                exit.place(x = 200, y = 27)
+                edit_btn.place(x = 155, y = 315)
+                signout_btn.place(x = 85, y = 315)
+                profile_first_name_lbl.place(x = 20, y = 100)
+                profile_last_name_lbl.place(x = 20, y = 130)
+                profile_username_lbl.place(x = 20, y = 160)
+                profile_birthdate_lbl.place(x = 20, y = 190)
+                profile_tertiary_status_lbl.place(x = 20, y = 220)
+                profile_knowledge_lbl.place(x = 20, y = 250)
 
             birthdate = birthdate_var.get()
             knowledge = knowledge_var.get()
@@ -214,6 +311,7 @@ def open_signup_Window():
             building_profile_window.destroy()
 
             # Create and redirect user to home page.
+            global home_window
             home_window = tk.Tk()
             home_window.geometry("1200x750")
             home_window.title("Home")
@@ -348,7 +446,7 @@ def open_signup_Window():
 
                 # Create building profile page, user will be directed here 
                 # after signing up.
-
+                global building_profile_window
                 building_profile_window = tk.Tk()
                 building_profile_window.geometry("300x350")
                 building_profile_window.title("Building profile")
@@ -458,6 +556,7 @@ def open_signup_Window():
                                  "fields.\nPlease enter all fields.")
 
     # Create window properties.
+    global signup_window
     signup_window = Toplevel(first_window)
     signup_window.title("Sign up")
     signup_window.geometry("300x350")
@@ -549,6 +648,7 @@ def open_signup_Window():
     confirm_password_entry.place(x = 100, y = 280)
 
     signup_btn.place(x = 120, y = 315)
+    signup_window.mainloop()
 
 # Function to open log in window when button is clicked.
 def open_login_Window():
@@ -584,6 +684,7 @@ def open_login_Window():
                                  "fields.\nPlease enter all fields.")
 
     # Create window properties.
+    global login_window
     login_window = Toplevel(first_window)
     login_window.title("Log in")
     login_window.geometry("300x350")
@@ -657,73 +758,21 @@ def open_login_Window():
     password_entry.place(x = 100, y = 200)
     login_btn.place(x = 120, y = 315)
 
+# Function to sign the user out and redirect them to the first window.
+def signout():
+    response = messagebox.askquestion("Signout?","Your progress will " +
+                                        "NOT be saved.\nAre you sure you want " +
+                                        "to signout?", 
+    icon = 'warning')
+    print(response)
+    if response == "yes":
+        confirm_btn = Button(profile_window)
+        confirm_btn.pack()
+        if 'home_window' in globals():
+            home_window.destroy()
+        if 'profile_window' in globals():
+            profile_window.destroy()
+        create_main_gui()
 
-# Create Log in/sign up window.
-first_window = tk.Tk()
-first_window.geometry("1200x750")
-first_window.title("Log in/Sign up")
-first_window.resizable(False, False)
-
-# Display label.
-program_title = tk.Label(first_window,
-    text = "Tertiary Budget \nTracker             ",
-    font = ("Helvetica", 48))
-program_title.place(x = 200, y = 250)
-
-# Create a coloured box for the top where navigation bar will be.
-canvas = Canvas(first_window, height = 100, width = 1210, bg = "CadetBlue2", )
-
-# Create Sign up, log in, and exit buttons.
-open_signup_btn = tk.Button(first_window,
-                   text = "Sign up",
-                   width = 10,
-                   height = 2,
-                   fg = "black",
-                   bg = "darkgrey",
-                   command = open_signup_Window)
-login_btn = tk.Button(first_window,
-                   text = "Log in",
-                   width = 10,
-                   height = 2,
-                   fg = "black",
-                   bg = "darkgrey",
-                   command = open_login_Window)
-exit = tk.Button(first_window,
-                   text = "Exit",
-                   width = 10,
-                   height = 2,
-                   fg = "black",
-                   bg = "grey",
-                   command = popup)
-
-# Create a label informing the user about what the program does.
-info_lbl_one = Label(first_window, text = "Enjoy a budget plan tailored " +
-                 "\nto your financial wants and needs.\n\nBenefit from " +
-                 "helpful tips to\nmanage your money.", 
-                 font = ("Helvetica", 14))
-info_lbl_two = Label(first_window, text = "Aims to improve financial " +
-                     "stability among New Zealand tertiary students " +
-                     "aged 18-25.", font = ("Helvetica", 10))
-info_lbl_one.place(x = 800, y = 280)
-info_lbl_two.place(x = 200, y = 400)
-
-# Add image to the first window.
-image = Image.open("Lean-Budgeting-Part-One 1.png")
- 
-# Resize the image using resize() method
-resize_image = image.resize((1200, 250))
-img = ImageTk.PhotoImage(resize_image)
- 
-# create label and add resize image
-label1 = Label(image = img)
-label1.image = img
-
-# Place labels, buttons, and images in a position.
-canvas.place(x = 0, y = 20)
-label1.place(x = 0, y = 450)
-login_btn.place(x = 900, y = 40)
-open_signup_btn.place(x = 990, y = 40)
-exit.place(x = 1110, y = 40)
-label1.place(x = 0, y = 450)
-
-first_window.mainloop()
+# Start the application.
+create_main_gui()
