@@ -9,7 +9,7 @@ from datetime import date
 from tkinter import font
 import sys;
 
-def create_main_gui():
+def open_first_window():
     # Function to ensure the user wants to exit the first_window.
     def popup():
         response = messagebox.askquestion("Exit Programme?","Your progress will " +
@@ -36,7 +36,10 @@ def create_main_gui():
     program_title.place(x = 200, y = 250)
 
     # Create a coloured box for the top where navigation bar will be.
-    canvas = Canvas(first_window, height = 100, width = 1210, bg = "CadetBlue2", )
+    canvas = Canvas(first_window, 
+                    height = 100, 
+                    width = 1210, 
+                    bg = "CadetBlue2")
 
     # Create Sign up, log in, and exit buttons.
     open_signup_btn = tk.Button(first_window,
@@ -85,7 +88,6 @@ def create_main_gui():
 
     # Place labels, buttons, and images in a position.
     canvas.place(x = 0, y = 20)
-    label1.place(x = 0, y = 450)
     login_btn.place(x = 900, y = 40)
     open_signup_btn.place(x = 990, y = 40)
     exit.place(x = 1110, y = 40)
@@ -93,12 +95,9 @@ def create_main_gui():
 
     first_window.mainloop()
 
-    # Create home window.
-
 # Funtion to open signup window when button is clicked.
 def open_signup_Window():
-    # Function to validate user input and submit it to a file.
-    
+
     # Direct user to building profile page after signing in.
     def signup():
 
@@ -160,116 +159,6 @@ def open_signup_Window():
 
         # Function to validate the user input on building profile page and redirect to homepage.
         def next():
-            # Function to ensure the user wants to exit the home_window.
-            def popup():
-                response = messagebox.askquestion("Exit Programme?","Your progress will " +
-                                                "NOT be saved.\nAre you sure you want " +
-                                                "to exit the program?", 
-                icon = 'warning')
-                print(response)
-                if response == "yes":
-                    confirm_btn = Button(home_window, 
-                                        command = home_window.quit)
-                    confirm_btn.pack()
-                    home_window.destroy()
-
-            # Function to show the user their profile and allow them to edit information.
-            def open_profile():
-                # Function to exit profile page.
-                def exit_profile():
-                    response = messagebox.askquestion("Exit profile?","Your progress will " +
-                                                    "NOT be saved.\nAre you sure you want " +
-                                                    "to exit the profile?", 
-                    icon = 'warning')
-                    print(response)
-                    if response == "yes":
-                        confirm_btn = Button(profile_window, 
-                                            command = profile_window.quit)
-                        confirm_btn.pack()
-                        profile_window.destroy()
-
-                # Create profile page.
-                global profile_window
-                profile_window = tk.Tk()
-                profile_window.geometry("300x350")
-                profile_window.title("Profile")
-                profile_window.resizable(False, False)
-
-                # Create widow content.
-                canvas = Canvas(profile_window, 
-                                height = 50, 
-                                width = 350, 
-                                bg = "CadetBlue2")
-                title_lbl = tk.Label(profile_window, 
-                                    text = "Profile:", 
-                                    font = ("Helvetica", 15),
-                                    bg = "CadetBlue2")
-                edit_btn = tk.Button(profile_window,
-                        text = "Edit", 
-                        width = 7,
-                        height = 1,
-                        fg = "black",
-                        bg = "gold")#Add edit command once function is created.
-                exit = tk.Button(profile_window,
-                                text = "Exit",
-                                width = 10,
-                                height = 2,
-                                fg = "black",
-                                bg = "grey",
-                                command = exit_profile) 
-                profile_first_name_lbl = tk.Label(profile_window, 
-                                                    text = f"First name: {first_name}", 
-                                                    font = ("Helvetica", 11))
-                profile_last_name_lbl = tk.Label(profile_window, 
-                                                    text = f"Last name: {last_name}", 
-                                                    font = ("Helvetica", 11))
-                profile_username_lbl = tk.Label(profile_window, 
-                                                text = f"Username: {username}", 
-                                                font = ("Helvetica", 11))
-                profile_birthdate_lbl = tk.Label(profile_window, 
-                                                    text = f"Birthdate: {birthdate}", 
-                                                    font = ("Helvetica", 11))
-                if tertiary_status == "1":
-                    profile_tertiary_status_lbl = tk.Label(profile_window, 
-                                                            text = f"Tertiary status: Current student", 
-                                                            font = ("Helvetica", 11))
-                if tertiary_status == "2":
-                    profile_tertiary_status_lbl = tk.Label(profile_window, 
-                                                            text = f"Tertiary status: Other", 
-                                                            font = ("Helvetica", 11))
-                if knowledge == "1":
-                    profile_knowledge_lbl = tk.Label(profile_window, 
-                                                        text = f"Knowledge of budgeting: Very poor", 
-                                                        font = ("Helvetica", 11))
-                if knowledge == "2":
-                    profile_knowledge_lbl = tk.Label(profile_window, 
-                                                        text = f"Knowledge of budgeting: Average", 
-                                                        font = ("Helvetica", 11))
-                if knowledge == "3":
-                    profile_knowledge_lbl = tk.Label(profile_window, 
-                                                        text = f"Knowledge of budgeting: Excellent",
-                                                        font = ("Helvetica", 11))
-                signout_btn = tk.Button(profile_window,
-                                        text = "Signout", 
-                                        width = 7,
-                                        height = 1,
-                                        fg = "black",
-                                        bg = "firebrick1",
-                                        command = signout)
-            
-                # Place window content.
-                canvas.place(x = 0, y = 20)
-                title_lbl.place(x = 10, y = 34)
-                exit.place(x = 200, y = 27)
-                edit_btn.place(x = 155, y = 315)
-                signout_btn.place(x = 85, y = 315)
-                profile_first_name_lbl.place(x = 20, y = 100)
-                profile_last_name_lbl.place(x = 20, y = 130)
-                profile_username_lbl.place(x = 20, y = 160)
-                profile_birthdate_lbl.place(x = 20, y = 190)
-                profile_tertiary_status_lbl.place(x = 20, y = 220)
-                profile_knowledge_lbl.place(x = 20, y = 250)
-
             birthdate = birthdate_var.get()
             knowledge = knowledge_var.get()
             tertiary_status = tertiary_status_var.get()
@@ -307,96 +196,22 @@ def open_signup_Window():
                                     "features and resources which are " +
                                     "tailored specifically for ages 18-25 " +
                                     "like yourself.")
-                
-            building_profile_window.destroy()
-
-            # Create and redirect user to home page.
-            global home_window
-            home_window = tk.Tk()
-            home_window.geometry("1200x750")
-            home_window.title("Home")
-            home_window.resizable(False, False)
-
-            underlined_font = font.Font(size = 9, underline = True)
-
-            # Create window content.
-            program_title = tk.Label(home_window,
-                text = "Tertiary Budget \nTracker             ",
-                font = ("Helvetica", 48))
-            canvas = Canvas(home_window, 
-                            height = 100, 
-                            width = 1210, 
-                            bg = "CadetBlue2")
-            home_btn = tk.Button(home_window,
-                                text = "Home",
-                                font = underlined_font,
-                                width = 10,
-                                height = 2,
-                                bg = "darkgrey")
-            open_about_btn = tk.Button(home_window,
-                            text = "About",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "darkgrey")
-            open_budget_btn = tk.Button(home_window,
-                            text = "My Budget",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "darkgrey")
-            open_tips_btn = tk.Button(home_window,
-                            text = "Tips",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "darkgrey")
-            open_help_btn = tk.Button(home_window,
-                            text = "Help",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "darkgrey")
-            start_btn = tk.Button(home_window,
-                                    text = "Get started!",
-                                    width = 15,
-                                    height = 2,
-                                    font = ("Helvetica", 20),
-                                    bg = "gold")
-            profile_btn = tk.Button(home_window,
-                            text = "Profile",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "grey",
-                            command = open_profile)
-            exit = tk.Button(home_window,
-                            text = "Exit",
-                            width = 10,
-                            height = 2,
-                            fg = "black",
-                            bg = "grey",
-                            command = popup)
-            image = Image.open("Lean-Budgeting-Part-One 1.png")
-            resize_image = image.resize((1200, 250))
-            img = ImageTk.PhotoImage(resize_image)
-            label1 = Label(image = img)
-            label1.image = img
-
-            # Place labels, buttons, and images in a position.
-            program_title.place(x = 200, y = 250)
-            canvas.place(x = 0, y = 20)
-            label1.place(x = 0, y = 450)
-            home_btn.place(x = 50, y = 40)
-            open_about_btn.place(x = 244, y = 40)
-            open_budget_btn.place(x = 438, y = 40)
-            open_tips_btn.place(x = 632, y = 40)
-            open_help_btn.place(x = 826, y = 40)
-            profile_btn.place(x = 1020, y = 40)
-            exit.place(x = 1110, y = 40)
-            start_btn.place(x = 800, y = 290)
-
-            home_window.mainloop()
+                if tertiary_status == "1":
+                    tertiary_status_words = "Current student"
+                if tertiary_status == "2":
+                    tertiary_status_words = "Other"
+                if knowledge == "1":
+                    knowledge_words = "Very poor"
+                if knowledge == "2":
+                    knowledge_words = "Average"
+                if knowledge == "3":
+                    knowledge_words = "Excellent"
+                with open("Existing Users.txt", "a") as file:
+                    file.write(f"Birthdate: {birthdate} Tertiary status: {tertiary_status_words} Knowledge of budgeting: {knowledge_words}\n\n")
+                print(f"Birthdate: {birthdate}")
+                print(f"Tertiary status: {tertiary_status_words}")
+                print(f"Knowledge of budgeting: {knowledge_words}")
+                exit_signup_window()
 
         first_name = first_name_var.get()
         last_name = last_name_var.get()
@@ -671,6 +486,7 @@ def open_login_Window():
                     password_var.set("")
                     messagebox.showinfo("Successful", f"Log in successful." +
                                         f"\nWelcome back {username}")
+                    exit_login_window()
                 elif not user_exists:
                     messagebox.showerror("Unsuccessful", "You have entered " +
                                      "an invalid username or password. " +
@@ -772,7 +588,499 @@ def signout():
             home_window.destroy()
         if 'profile_window' in globals():
             profile_window.destroy()
-        create_main_gui()
+        open_first_window()
+
+# Function to exit the log in window and go to the main code.
+def exit_login_window():
+    if 'first_window' in globals():
+        first_window.destroy()
+    open_main_code()
+
+# Function to exit the sign up window and go to the main code.
+def exit_signup_window():
+    if 'building_profile_window' in globals():
+        building_profile_window.destroy()
+    open_main_code()
+
+# Function where the main code is.
+def open_main_code():
+    # Function to open help window.
+    def open_help_window():
+
+        # Function to ensure the user wants to exit the help_window.
+        def exit_help_window():
+            response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                            "NOT be saved.\nAre you sure you want " +
+                                            "to exit the program?", 
+            icon = 'warning')
+            print(response)
+            if response == "yes":
+                confirm_btn = Button(help_window, 
+                                    command = help_window.quit)
+                confirm_btn.pack()
+                help_window.destroy()
+
+        # Create profile page.
+        home_window.destroy()
+        global help_window
+        help_window = tk.Tk()
+        help_window.geometry("1200x750")
+        help_window.title("Help: User Manual")
+        help_window.resizable(False, False)
+
+        underlined_font = font.Font(size = 9, underline = True)
+
+        # Create window content.
+        canvas = Canvas(help_window, 
+                        height = 100, 
+                        width = 1210, 
+                        bg = "CadetBlue2")
+        home_btn = tk.Button(help_window,
+                        text = "Home",
+                        width = 10,
+                        height = 2,
+                        bg = "darkgrey",
+                        command = return_main)
+        open_about_btn = tk.Button(help_window,
+                        text = "About",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_budget_btn = tk.Button(help_window,
+                        text = "My Budget",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_tips_btn = tk.Button(help_window,
+                        text = "Tips",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_help_btn = tk.Button(help_window,
+                        text = "Help",
+                        font = underlined_font,
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        profile_btn = tk.Button(help_window,
+                        text = "Profile",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = open_profile)
+        exit = tk.Button(help_window,
+                        text = "Exit",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = exit_help_window)
+        back_btn = tk.Button(help_window,
+                        text = "Back",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = return_main)
+        
+        # Create user manual file.
+        user_manual_file = open("User_manual.txt","rb")
+        user_manual = user_manual_file.read()
+
+        # Create a vertical scrollbar where the user manual is displayed.
+        scrollbar = Scrollbar(help_window)
+        text_box = Text(help_window, 
+                        width = 120, 
+                        height = 37, 
+                        wrap = NONE, 
+                        yscrollcommand = scrollbar.set)
+        text_box.insert(END, user_manual)
+        scrollbar.config(command = text_box.yview)
+
+        # Place labels, buttons, and images in a position.
+        canvas.place(x = 0, y = 20)
+        home_btn.place(x = 50, y = 40)
+        open_about_btn.place(x = 244, y = 40)
+        open_budget_btn.place(x = 438, y = 40)
+        open_tips_btn.place(x = 632, y = 40)
+        open_help_btn.place(x = 826, y = 40)
+        profile_btn.place(x = 1020, y = 40)
+        exit.place(x = 1110, y = 40)
+        scrollbar.pack(side = RIGHT, fill = Y)
+        text_box.pack(side = BOTTOM)
+        back_btn.place(x = 10, y = 700)
+
+        help_window.mainloop()
+
+    # Function to open my income page.
+    def open_my_income():
+
+        # Function to ensure the user wants to exit the help_window.
+        def exit_income_window():
+            response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                            "NOT be saved.\nAre you sure you want " +
+                                            "to exit the program?", 
+            icon = 'warning')
+            print(response)
+            if response == "yes":
+                confirm_btn = Button(income_window, 
+                                    command = income_window.quit)
+                confirm_btn.pack()
+                income_window.destroy()
+
+        # Create my income page.
+        home_window.destroy()
+        global income_window
+        income_window = tk.Tk()
+        income_window.geometry("1200x750")
+        income_window.title("My income")
+        income_window.resizable(False, False)
+
+        underlined_font = font.Font(size = 9, underline = True)
+
+        # Create window content.
+        title = tk.Label(income_window, 
+                         text = "My income",
+                         font = ("Helvetica", 40))
+        canvas = Canvas(income_window, 
+                        height = 100, 
+                        width = 1210, 
+                        bg = "CadetBlue2")
+        home_btn = tk.Button(income_window,
+                        text = "Home",
+                        width = 10,
+                        height = 2,
+                        bg = "darkgrey",
+                        command = return_main)
+        open_about_btn = tk.Button(income_window,
+                        text = "About",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_budget_btn = tk.Button(income_window,
+                        text = "My Budget",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_tips_btn = tk.Button(income_window,
+                        text = "Tips",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey",
+                        command = tips_message)
+        open_help_btn = tk.Button(income_window,
+                        text = "Help",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey",
+                        command = open_help_window)
+        profile_btn = tk.Button(income_window,
+                        text = "Profile",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = open_profile)
+        exit = tk.Button(income_window,
+                        text = "Exit",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = exit_income_window)
+        next_btn = tk.Button(income_window,
+                        text = "Next",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "gold") # Command, take user to next stage
+        back_btn = tk.Button(income_window,
+                        text = "Back",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = return_main)
+        # Create progress bar on the side.
+        side_bar = Canvas(income_window, 
+                        height = 900, 
+                        width = 140, 
+                        bg = "CadetBlue2")
+        income_btn = tk.Button(income_window,
+                               text = "My Income",
+                               font = underlined_font)
+        expense_btn = tk.Button(income_window,
+                                text = "My expenses")
+        budget_btn = tk.Button(income_window,
+                                text = "My budget")
+        insights_btn = tk.Button(income_window,
+                                text = "My insights")
+        # Income image.
+        image = Image.open("income icon.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        income_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        income_image.image = img
+
+        # Expense image.
+        image = Image.open("expense_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        expense_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        expense_image.image = img
+
+        # Budget image.
+        image = Image.open("budget_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        budget_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        budget_image.image = img
+
+        # Insights image.
+        image = Image.open("insights_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        insights_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        insights_image.image = img
+
+        # Add income table.
+
+        
+        # Place labels, buttons, and images in a position.
+        title.place(x = 200, y = 150)
+        canvas.place(x = 0, y = 20)
+        side_bar.place(x = 0, y = 122)
+        income_btn.place(x = 40, y = 250)
+        income_image.place(x = 50, y = 190)
+        expense_btn.place(x = 40, y = 360)
+        expense_image.place(x = 50, y = 300)
+        budget_btn.place(x = 40, y = 470)
+        budget_image.place(x = 50, y = 410)
+        insights_btn.place(x = 40, y = 580)
+        insights_image.place(x = 50, y = 520)
+        home_btn.place(x = 50, y = 40)
+        open_about_btn.place(x = 244, y = 40)
+        open_budget_btn.place(x = 438, y = 40)
+        open_tips_btn.place(x = 632, y = 40)
+        open_help_btn.place(x = 826, y = 40)
+        profile_btn.place(x = 1020, y = 40)
+        exit.place(x = 1110, y = 40)
+        next_btn.place(x = 1110, y = 700)
+        back_btn.place(x = 150, y = 700)
+
+        income_window.mainloop()
+
+    # Function to ensure the user wants to exit the home_window.
+    def popup():
+        response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                        "NOT be saved.\nAre you sure you want " +
+                                        "to exit the program?", 
+        icon = 'warning')
+        print(response)
+        if response == "yes":
+            confirm_btn = Button(home_window, 
+                                command = home_window.quit)
+            confirm_btn.pack()
+            home_window.destroy()
+
+    # Function to inform the user that the tips page is unavailable.
+    def tips_message():
+        messagebox.showerror("Error", "Page not found. Sorry, financial " +
+                             "tips are currently unavailable. :(")
+
+    # Function to show the user their profile and allow them to edit information.
+    def open_profile():
+        # Function to exit profile page.
+        def exit_profile():
+            response = messagebox.askquestion("Exit profile?","Your progress will " +
+                                            "NOT be saved.\nAre you sure you want " +
+                                            "to exit the profile?", 
+            icon = 'warning')
+            print(response)
+            if response == "yes":
+                confirm_btn = Button(profile_window, 
+                                    command = profile_window.quit)
+                confirm_btn.pack()
+                profile_window.destroy()
+
+        # Create profile page.
+        global profile_window
+        profile_window = tk.Toplevel()
+        profile_window.geometry("300x350")
+        profile_window.title("Profile")
+        profile_window.resizable(False, False)
+
+        # Read the user profile information from the existing users file.
+        with open("Existing Users.txt", "r") as file:
+            lines = file.read().splitlines()
+            print(lines)
+
+        # Create widow content.
+        canvas = Canvas(profile_window, 
+                        height = 50, 
+                        width = 350, 
+                        bg = "CadetBlue2")
+        title_lbl = tk.Label(profile_window, 
+                            text = "Profile:", 
+                            font = ("Helvetica", 15),
+                            bg = "CadetBlue2")
+        exit = tk.Button(profile_window,
+                        text = "Exit",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = exit_profile) 
+        profile_first_name_lbl = tk.Label(profile_window, 
+                                            text = (f"First name: {first_name}"), 
+                                            font = ("Helvetica", 11))
+        profile_last_name_lbl = tk.Label(profile_window, 
+                                            text = (f"Last name: {last_name}"), 
+                                            font = ("Helvetica", 11))
+        profile_username_lbl = tk.Label(profile_window, 
+                                        text = (f"Username: {username}"), 
+                                        font = ("Helvetica", 11))
+        profile_birthdate_lbl = tk.Label(profile_window, 
+                                            text = (f"Birthdate: {birthdate}"), 
+                                            font = ("Helvetica", 11))
+        profile_tertiary_status_lbl = tk.Label(profile_window, 
+                                                text = (f"Tertiary status: {tertiary_status_words}"), 
+                                                font = ("Helvetica", 11))
+        profile_knowledge_lbl = tk.Label(profile_window, 
+                                            text = (f"Knowledge of budgeting: {knowledge_words}"), 
+                                            font = ("Helvetica", 11))
+        signout_btn = tk.Button(profile_window,
+                                text = "Signout", 
+                                width = 7,
+                                height = 1,
+                                fg = "black",
+                                bg = "firebrick1",
+                                command = signout)
+    
+        # Place window content.
+        canvas.place(x = 0, y = 20)
+        title_lbl.place(x = 10, y = 34)
+        exit.place(x = 200, y = 27)
+        signout_btn.place(x = 120, y = 315)
+        profile_first_name_lbl.place(x = 20, y = 100)
+        profile_last_name_lbl.place(x = 20, y = 130)
+        profile_username_lbl.place(x = 20, y = 160)
+        profile_birthdate_lbl.place(x = 20, y = 190)
+        profile_tertiary_status_lbl.place(x = 20, y = 220)
+        profile_knowledge_lbl.place(x = 20, y = 250)
+
+    # Create home page.
+    global home_window
+    home_window = tk.Tk()
+    home_window.geometry("1200x750")
+    home_window.title("Home")
+    home_window.resizable(False, False)
+
+    underlined_font = font.Font(size = 9, underline = True)
+
+    # Create window content.
+    program_title = tk.Label(home_window,
+        text = "Tertiary Budget \nTracker             ",
+        font = ("Helvetica", 48))
+    canvas = Canvas(home_window, 
+                    height = 100, 
+                    width = 1210, 
+                    bg = "CadetBlue2")
+    home_btn = tk.Button(home_window,
+                        text = "Home",
+                        font = underlined_font,
+                        width = 10,
+                        height = 2,
+                        bg = "darkgrey")
+    open_about_btn = tk.Button(home_window,
+                    text = "About",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey")
+    open_budget_btn = tk.Button(home_window,
+                    text = "My Budget",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey")
+    open_tips_btn = tk.Button(home_window,
+                    text = "Tips",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey",
+                    command = tips_message)
+    open_help_btn = tk.Button(home_window,
+                    text = "Help",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "darkgrey",
+                    command = open_help_window)
+    start_btn = tk.Button(home_window,
+                            text = "Get started!",
+                            width = 15,
+                            height = 2,
+                            font = ("Helvetica", 20),
+                            bg = "gold",
+                            command = open_my_income)
+    profile_btn = tk.Button(home_window,
+                    text = "Profile",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "grey",
+                    command = open_profile)
+    exit = tk.Button(home_window,
+                    text = "Exit",
+                    width = 10,
+                    height = 2,
+                    fg = "black",
+                    bg = "grey",
+                    command = popup)
+    image = Image.open("Lean-Budgeting-Part-One 1.png")
+    resize_image = image.resize((1200, 250))
+    img = ImageTk.PhotoImage(resize_image)
+    label1 = Label(image = img)
+    label1.image = img
+
+    # Place labels, buttons, and images in a position.
+    program_title.place(x = 200, y = 250)
+    canvas.place(x = 0, y = 20)
+    label1.place(x = 0, y = 450)
+    home_btn.place(x = 50, y = 40)
+    open_about_btn.place(x = 244, y = 40)
+    open_budget_btn.place(x = 438, y = 40)
+    open_tips_btn.place(x = 632, y = 40)
+    open_help_btn.place(x = 826, y = 40)
+    profile_btn.place(x = 1020, y = 40)
+    exit.place(x = 1110, y = 40)
+    start_btn.place(x = 800, y = 290)
+
+    home_window.mainloop()
+
+# Function go back to main window.
+def return_main():
+    if 'income_window' in globals():
+        income_window.destroy()
+        open_main_code()
+    if 'help_window' in globals():
+        help_window.destroy()
+        open_main_code()
 
 # Start the application.
-create_main_gui()
+open_first_window()
