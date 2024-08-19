@@ -620,8 +620,13 @@ def open_main_code():
                 confirm_btn.pack()
                 help_window.destroy()
 
-        # Create profile page.
-        home_window.destroy()
+        # Create profile page. 
+        if "income_window" in globals():
+            income_window.destroy()
+        if "home_window" in globals():
+            home_window.destroy()
+        if "expenses_window" in globals():
+            expenses_window.destroy()
         global help_window
         help_window = tk.Tk()
         help_window.geometry("1200x750")
@@ -658,7 +663,8 @@ def open_main_code():
                         width = 10,
                         height = 2,
                         fg = "black",
-                        bg = "darkgrey")
+                        bg = "darkgrey",
+                        command = tips_message)
         open_help_btn = tk.Button(help_window,
                         text = "Help",
                         font = underlined_font,
@@ -694,7 +700,7 @@ def open_main_code():
 
         # Create a vertical scrollbar where the user manual is displayed.
         scrollbar = Scrollbar(help_window)
-        text_box = Text(help_window, 
+        text_box = Text(help_window,
                         width = 120, 
                         height = 37, 
                         wrap = NONE, 
@@ -819,7 +825,8 @@ def open_main_code():
                                text = "My Income",
                                font = underlined_font)
         expense_btn = tk.Button(income_window,
-                                text = "My expenses")
+                                text = "My expenses",
+                                command = open_expenses)
         budget_btn = tk.Button(income_window,
                                 text = "My budget")
         insights_btn = tk.Button(income_window,
@@ -882,6 +889,173 @@ def open_main_code():
         back_btn.place(x = 150, y = 700)
 
         income_window.mainloop()
+
+    # Function to open my expenses page.
+    def open_expenses():
+
+        # Function to ensure the user wants to exit the help_window.
+        def exit_expenses_window():
+            response = messagebox.askquestion("Exit Programme?","Your progress will " +
+                                            "NOT be saved.\nAre you sure you want " +
+                                            "to exit the program?", 
+            icon = 'warning')
+            print(response)
+            if response == "yes":
+                confirm_btn = Button(expenses_window, 
+                                    command = expenses_window.quit)
+                confirm_btn.pack()
+                expenses_window.destroy()
+
+        # Create my income page.
+        income_window.destroy()
+        global expenses_window
+        expenses_window = tk.Tk()
+        expenses_window.geometry("1200x750")
+        expenses_window.title("My expenses")
+        expenses_window.resizable(False, False)
+
+        underlined_font = font.Font(size = 9, underline = True)
+
+        # Create window content.
+        title = tk.Label(expenses_window, 
+                         text = "My expenses",
+                         font = ("Helvetica", 40))
+        canvas = Canvas(expenses_window, 
+                        height = 100, 
+                        width = 1210, 
+                        bg = "CadetBlue2")
+        home_btn = tk.Button(expenses_window,
+                        text = "Home",
+                        width = 10,
+                        height = 2,
+                        bg = "darkgrey",
+                        command = return_main)
+        open_about_btn = tk.Button(expenses_window,
+                        text = "About",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_budget_btn = tk.Button(expenses_window,
+                        text = "My Budget",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey")
+        open_tips_btn = tk.Button(expenses_window,
+                        text = "Tips",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey",
+                        command = tips_message)
+        open_help_btn = tk.Button(expenses_window,
+                        text = "Help",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "darkgrey",
+                        command = open_help_window)
+        profile_btn = tk.Button(expenses_window,
+                        text = "Profile",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = open_profile)
+        exit = tk.Button(expenses_window,
+                        text = "Exit",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = exit_expenses_window)
+        next_btn = tk.Button(expenses_window,
+                        text = "Next",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "gold") # Command, take user to next stage
+        back_btn = tk.Button(expenses_window,
+                        text = "Back",
+                        width = 10,
+                        height = 2,
+                        fg = "black",
+                        bg = "grey",
+                        command = return_main)
+        # Create progress bar on the side.
+        side_bar = Canvas(expenses_window, 
+                        height = 900, 
+                        width = 140, 
+                        bg = "CadetBlue2")
+        income_btn = tk.Button(expenses_window,
+                               text = "My Income",
+                               command = open_my_income)
+        expense_btn = tk.Button(expenses_window,
+                                text = "My expenses",
+                                font = underlined_font)
+        budget_btn = tk.Button(expenses_window,
+                                text = "My budget")
+        insights_btn = tk.Button(expenses_window,
+                                text = "My insights")
+        # Income image.
+        image = Image.open("income icon.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        income_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        income_image.image = img
+
+        # Expense image.
+        image = Image.open("expense_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        expense_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        expense_image.image = img
+
+        # Budget image.
+        image = Image.open("budget_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        budget_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        budget_image.image = img
+
+        # Insights image.
+        image = Image.open("insights_image.png")
+        resize_image = image.resize((50, 50))
+        img = ImageTk.PhotoImage(resize_image)
+        insights_image = tk.Label(image = img,
+                          bg = "CadetBlue2")
+        insights_image.image = img
+
+        # Add expenses table.
+
+        
+        # Place labels, buttons, and images in a position.
+        title.place(x = 200, y = 150)
+        canvas.place(x = 0, y = 20)
+        side_bar.place(x = 0, y = 122)
+        income_btn.place(x = 40, y = 250)
+        income_image.place(x = 50, y = 190)
+        expense_btn.place(x = 40, y = 360)
+        expense_image.place(x = 50, y = 300)
+        budget_btn.place(x = 40, y = 470)
+        budget_image.place(x = 50, y = 410)
+        insights_btn.place(x = 40, y = 580)
+        insights_image.place(x = 50, y = 520)
+        home_btn.place(x = 50, y = 40)
+        open_about_btn.place(x = 244, y = 40)
+        open_budget_btn.place(x = 438, y = 40)
+        open_tips_btn.place(x = 632, y = 40)
+        open_help_btn.place(x = 826, y = 40)
+        profile_btn.place(x = 1020, y = 40)
+        exit.place(x = 1110, y = 40)
+        next_btn.place(x = 1110, y = 700)
+        back_btn.place(x = 150, y = 700)
+
+        expenses_window.mainloop()
 
     # Function to ensure the user wants to exit the home_window.
     def popup():
@@ -982,6 +1156,11 @@ def open_main_code():
         profile_tertiary_status_lbl.place(x = 20, y = 220)
         profile_knowledge_lbl.place(x = 20, y = 250)
 
+    def home_to_help():
+        if 'home_window' in globals():
+            home_window.destroy()
+            open_help_window()
+
     # Create home page.
     global home_window
     home_window = tk.Tk()
@@ -1030,7 +1209,7 @@ def open_main_code():
                     height = 2,
                     fg = "black",
                     bg = "darkgrey",
-                    command = open_help_window)
+                    command = home_to_help)
     start_btn = tk.Button(home_window,
                             text = "Get started!",
                             width = 15,
