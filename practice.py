@@ -3,23 +3,23 @@ import tkinter as tk
 from tkinter import  *
 from tkinter.ttk import *
 from tkinter import messagebox
-from PIL import ImageTk, Image 
+from PIL import ImageTk, Image
 from datetime import datetime
 from datetime import date
 from tkinter import font
 import sys;
-from tkinter import ttk 
+from tkinter import ttk
 
 def open_first_window():
     # Function to ensure the user wants to exit the first_window.
     def popup():
         response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                         "NOT be saved.\nAre you sure you want " +
-                                        "to exit the program?", 
+                                        "to exit the program?",
         icon='warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(first_window, 
+            confirm_btn = Button(first_window,
                                 command = first_window.quit)
             confirm_btn.pack()
             first_window.destroy()
@@ -37,9 +37,9 @@ def open_first_window():
     program_title.place(x = 200, y = 250)
 
     # Create a coloured box for the top where navigation bar will be.
-    canvas = Canvas(first_window, 
-                    height = 100, 
-                    width = 1210, 
+    canvas = Canvas(first_window,
+                    height = 100,
+                    width = 1210,
                     bg = "CadetBlue2")
 
     # Create Sign up, log in, and exit buttons.
@@ -68,7 +68,7 @@ def open_first_window():
     # Create a label informing the user about what the program does.
     info_lbl_one = Label(first_window, text = "Enjoy a budget plan tailored " +
                     "\nto your financial wants and needs.\n\nBenefit from " +
-                    "helpful tips to\nmanage your money.", 
+                    "helpful tips to\nmanage your money.",
                     font = ("Helvetica", 14))
     info_lbl_two = Label(first_window, text = "Aims to improve financial " +
                         "stability among New Zealand tertiary students " +
@@ -78,11 +78,11 @@ def open_first_window():
 
     # Add image to the first window.
     image = Image.open("Lean-Budgeting-Part-One 1.png")
-    
+   
     # Resize the image using resize() method
     resize_image = image.resize((1200, 250))
     img = ImageTk.PhotoImage(resize_image)
-    
+   
     # create label and add resize image
     label1 = Label(image = img)
     label1.image = img
@@ -106,11 +106,11 @@ def open_signup_Window():
         def popup():
             response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the program?", 
+                                            "to exit the program?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(building_profile_window, 
+                confirm_btn = Button(building_profile_window,
                                      command = building_profile_window.quit)
                 confirm_btn.pack()
                 building_profile_window.destroy()
@@ -260,7 +260,7 @@ def open_signup_Window():
                                     f"\nWelcome {username}")
                 first_window.destroy()
 
-                # Create building profile page, user will be directed here 
+                # Create building profile page, user will be directed here
                 # after signing up.
                 global building_profile_window
                 building_profile_window = tk.Tk()
@@ -276,19 +276,19 @@ def open_signup_Window():
 
                 # Declaring birthdate, tertiary status, and knowledge as string variables.
                 birthdate_var = tk.StringVar()
-                tertiary_status_var = StringVar() 
+                tertiary_status_var = StringVar()
                 knowledge_var = tk.StringVar()
 
                 # Create window content with labels, canvas, and buttons.
-                canvas = Canvas(building_profile_window, 
-                                height = 50, 
-                                width = 350, 
+                canvas = Canvas(building_profile_window,
+                                height = 50,
+                                width = 350,
                                 bg = "CadetBlue2", )
-                title_lbl = tk.Label(building_profile_window, 
-                                     text = "Building profile:", 
+                title_lbl = tk.Label(building_profile_window,
+                                     text = "Building profile:",
                                      font = ("Helvetica", 15),
                                      bg = "CadetBlue2")
-                subtitle_lbl = tk.Label(building_profile_window, 
+                subtitle_lbl = tk.Label(building_profile_window,
                                        text = f"Let's get to know you better!\nPlease enter the following",
                                        font = ("Helvetica", 10))
                 exit = tk.Button(building_profile_window,
@@ -298,37 +298,37 @@ def open_signup_Window():
                                  fg = "black",
                                  bg = "grey",
                                  command = popup)    
-                
+               
                 next_btn = tk.Button(building_profile_window,
-                           text = "Next", 
+                           text = "Next",
                            width = 7,
                            height = 1,
                            fg = "black",
                            bg = "gold",
                            command = next)
-                
-                birthdate_lbl = tk.Label(building_profile_window, 
-                              text = "Birthdate (dd/mm/yyyy):", 
+               
+                birthdate_lbl = tk.Label(building_profile_window,
+                              text = "Birthdate (dd/mm/yyyy):",
                               font = ("Helvetica", 10, "bold"))
-                tertiary_lbl = tk.Label(building_profile_window, 
-                                        text = "Tertiary status:", 
+                tertiary_lbl = tk.Label(building_profile_window,
+                                        text = "Tertiary status:",
                                         font = ("Helvetica", 10, "bold"))
-                knowledge_lbl = tk.Label(building_profile_window, 
-                                        text = "Knowledge of budgeting:", 
+                knowledge_lbl = tk.Label(building_profile_window,
+                                        text = "Knowledge of budgeting:",
                                         font = ("Helvetica", 10, "bold"))
 
                 # Entrys.
-                birthdate_entry = tk.Entry(building_profile_window, 
+                birthdate_entry = tk.Entry(building_profile_window,
                                             textvariable = birthdate_var)
 
                 # Dictionary to create multiple options for tertiary status.
-                tertiary_status_dict = {"Current student" : "1", 
-                                        "Other" : "2"} 
+                tertiary_status_dict = {"Current student" : "1",
+                                        "Other" : "2"}
                 # Use a loop to create multiple radiobuttons for tertiary status.
                 x_coord = 20
-                for (text, value) in tertiary_status_dict.items(): 
-                    tertiary_status_btn = Radiobutton(building_profile_window, 
-                                                      text = text, 
+                for (text, value) in tertiary_status_dict.items():
+                    tertiary_status_btn = Radiobutton(building_profile_window,
+                                                      text = text,
                                                       variable = tertiary_status_var,
                                                       value = value,
                                                       command = tertiary_message)
@@ -339,18 +339,18 @@ def open_signup_Window():
                 knowledge_dict = {"Very Poor" : "1",
                                   "Average" : "2",
                                   "Excellent" : "3"}
-                
+               
                 # Use a loop to create multiple radiobuttons for knowledge.
                 x_coord = 20
-                for (text, value) in knowledge_dict.items(): 
-                    knowledge_btn = Radiobutton(building_profile_window, 
+                for (text, value) in knowledge_dict.items():
+                    knowledge_btn = Radiobutton(building_profile_window,
                                                 text = text,
                                                 variable = knowledge_var,
                                                 value = value,
                                                 command = knowledge_message)
                     knowledge_btn.place(x = x_coord, y = 270)
                     x_coord += 87
-                
+               
                 # Placing the labels and entries.
                 canvas.place(x = 0, y = 20)
                 title_lbl.place(x = 10, y = 34)
@@ -384,17 +384,17 @@ def open_signup_Window():
     username_var = tk.StringVar()
     password_var = tk.StringVar()
     confirm_password_var = tk.StringVar()
-    
+   
     # Create window content with labels, canvas, and buttons.
-    canvas = Canvas(signup_window, 
-                    height = 50, 
-                    width = 350, 
+    canvas = Canvas(signup_window,
+                    height = 50,
+                    width = 350,
                     bg = "CadetBlue2")
-    title_lbl = tk.Label(signup_window, 
-                      text = "Sign up:", 
+    title_lbl = tk.Label(signup_window,
+                      text = "Sign up:",
                       font = ("Helvetica", 15),
                       bg = "CadetBlue2")
-    subtitle_lbl = tk.Label(signup_window, 
+    subtitle_lbl = tk.Label(signup_window,
                         text = "Create an account",
                         font = ("Helvetica", 15))
     open_login_btn = tk.Button(signup_window,
@@ -404,24 +404,24 @@ def open_signup_Window():
                           fg = "black",
                           bg = "darkgrey",
                           command = open_login_Window)
-            
-    first_name_lbl = tk.Label(signup_window, 
-                              text = "First name:", 
+           
+    first_name_lbl = tk.Label(signup_window,
+                              text = "First name:",
                               font = ("Helvetica", 10, "bold"))
-    last_name_lbl = tk.Label(signup_window, 
-                             text = "Last name:", 
+    last_name_lbl = tk.Label(signup_window,
+                             text = "Last name:",
                              font = ("Helvetica", 10, "bold"))
-    username_lbl = tk.Label(signup_window, 
-                            text = "Username:", 
+    username_lbl = tk.Label(signup_window,
+                            text = "Username:",
                             font = ("Helvetica", 10, "bold"))
-    password_lbl = tk.Label(signup_window, 
-                            text = "Password:", 
+    password_lbl = tk.Label(signup_window,
+                            text = "Password:",
                             font = ("Helvetica", 10, "bold"))
-    confirm_password_lbl = tk.Label(signup_window, 
-                                    text = "Confirm \nPassword:", 
+    confirm_password_lbl = tk.Label(signup_window,
+                                    text = "Confirm \nPassword:",
                                     font = ("Helvetica", 10, "bold"))
     signup_btn = tk.Button(signup_window,
-                           text = "Sign up", 
+                           text = "Sign up",
                            width = 7,
                            height = 1,
                            fg = "black",
@@ -429,17 +429,17 @@ def open_signup_Window():
                            command = signup)
 
     # Entrys.
-    first_name_entry = tk.Entry(signup_window, 
+    first_name_entry = tk.Entry(signup_window,
                                 textvariable = first_name_var)
-    last_name_entry = tk.Entry(signup_window, 
+    last_name_entry = tk.Entry(signup_window,
                                textvariable = last_name_var)
-    username_entry = tk.Entry(signup_window, 
+    username_entry = tk.Entry(signup_window,
                               textvariable = username_var)
-    password_entry=tk.Entry(signup_window, 
-                            textvariable = password_var, 
+    password_entry=tk.Entry(signup_window,
+                            textvariable = password_var,
                             show = "*")
-    confirm_password_entry=tk.Entry(signup_window, 
-                                    textvariable = confirm_password_var, 
+    confirm_password_entry=tk.Entry(signup_window,
+                                    textvariable = confirm_password_var,
                                     show = "*")
 
     # Placing the labels and entries.
@@ -524,12 +524,12 @@ def open_login_Window():
     password_var = tk.StringVar()
 
     # Create window content with labels, canvas, and buttons.
-    canvas = Canvas(login_window, 
-                    height = 50, 
-                    width = 350, 
+    canvas = Canvas(login_window,
+                    height = 50,
+                    width = 350,
                     bg = "CadetBlue2")
-    title_lbl = tk.Label(login_window, 
-                         text = "Log in:", 
+    title_lbl = tk.Label(login_window,
+                         text = "Log in:",
                          font = ("Helvetica", 15),
                          bg = "CadetBlue2")
     subtitle_lbl = tk.Label(login_window,
@@ -543,14 +543,14 @@ def open_login_Window():
                                 bg = "darkgrey",
                                 command = open_signup_Window)
 
-    username_lbl = tk.Label(login_window, 
-                            text = "Username:", 
+    username_lbl = tk.Label(login_window,
+                            text = "Username:",
                             font=("Helvetica", 10, "bold"))
-    password_lbl = tk.Label(login_window, 
-                            text = "Password:", 
+    password_lbl = tk.Label(login_window,
+                            text = "Password:",
                             font = ("Helvetica", 10, "bold"))
     login_btn = tk.Button(login_window,
-                          text = "Log in", 
+                          text = "Log in",
                           width = 7,
                           height = 1,
                           fg = "black",
@@ -558,10 +558,10 @@ def open_login_Window():
                           command = login)
 
     # Create entries
-    username_entry = tk.Entry(login_window, 
+    username_entry = tk.Entry(login_window,
                               textvariable = username_var)
-    password_entry = tk.Entry(login_window, 
-                              textvariable = password_var, 
+    password_entry = tk.Entry(login_window,
+                              textvariable = password_var,
                               show = "*")
 
     # Place the labels and entries.
@@ -579,7 +579,7 @@ def open_login_Window():
 def signout():
     response = messagebox.askquestion("Signout?","Your progress will " +
                                         "NOT be saved.\nAre you sure you want " +
-                                        "to signout?", 
+                                        "to signout?",
     icon = 'warning')
     print(response)
     if response == "yes":
@@ -612,16 +612,16 @@ def open_main_code():
         def exit_help_window():
             response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the program?", 
+                                            "to exit the program?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(help_window, 
+                confirm_btn = Button(help_window,
                                     command = help_window.quit)
                 confirm_btn.pack()
                 help_window.destroy()
 
-        # Create profile page. 
+        # Create profile page.
         global help_window
         help_window = tk.Tk()
         help_window.geometry("1200x750")
@@ -631,9 +631,9 @@ def open_main_code():
         underlined_font = font.Font(size = 9, underline = True)
 
         # Create window content.
-        canvas = Canvas(help_window, 
-                        height = 100, 
-                        width = 1210, 
+        canvas = Canvas(help_window,
+                        height = 100,
+                        width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(help_window,
                         text = "Home",
@@ -682,7 +682,7 @@ def open_main_code():
                         fg = "black",
                         bg = "grey",
                         command = exit_help_window)
-        
+       
         # Create user manual file.
         user_manual_file = open("User_manual.txt","rb")
         user_manual = user_manual_file.read()
@@ -690,9 +690,9 @@ def open_main_code():
         # Create a vertical scrollbar where the user manual is displayed.
         scrollbar = Scrollbar(help_window)
         text_box = Text(help_window,
-                        width = 120, 
-                        height = 37, 
-                        wrap = NONE, 
+                        width = 120,
+                        height = 37,
+                        wrap = NONE,
                         yscrollcommand = scrollbar.set)
         text_box.insert(END, user_manual)
         scrollbar.config(command = text_box.yview)
@@ -718,63 +718,79 @@ def open_main_code():
         def exit_income_window():
             response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the program?", 
+                                            "to exit the program?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(income_window, 
+                confirm_btn = Button(income_window,
                                     command = income_window.quit)
                 confirm_btn.pack()
                 income_window.destroy()
 
         # Function to create income table.
         def create_table(income_window):
-            income_lbl = tk.Label(income_window, 
-                            text = "Income type:", 
+
+            # Function to keep the dollar sign in income type entries.
+            def dollar_sign(text):
+                return text.startswith("$")
+            
+            # Functiton to calculate total income.
+            def calculate_total_income(type_1, type_2, type_3, type_4, type_5, type_6, type_7):
+                total_income = (type_1 + type_2 + type_3 + \
+                        type_4 + type_5 + type_6 + \
+                        type_7)
+                return total_income
+           
+            income_lbl = tk.Label(income_window,
+                            text = "Income type:",
                             font = ("Helevitica", 15, "bold"))
 
-            income_type_var = tk.StringVar() 
-            income_choice = ttk.Combobox(income_window, width = 17, 
-                                        textvariable = income_type_var) 
+            income_type_var = tk.StringVar()
+            income_choice = ttk.Combobox(income_window, 
+                                         width = 17,
+                                         textvariable = income_type_var)
 
-            # Adding combobox drop down list 
+            # Adding combobox drop down list
             income_choice["values"] = ("Weekly",
                                        "Fortnightly",
                                        "Four-weekly",
                                        "Monthly",
-                                       "Yearly") 
+                                       "Yearly")
 
-            # Shows weekly as a default value 
+            # Shows weekly as a default value
             income_choice.current(0)
-
             income_type = income_type_var.get()
 
             # Create labels for each of the income types and the total income.
             type_1_lbl = tk.Label(income_window,
-                                  text = "Ongoing employment $", 
+                                  text = "Ongoing employment:",
                                   font=("Helvetica", 15, "bold"))
-            type_2_lbl = tk.Label(income_window, 
-                                  text = "Study link loan/student allowance $", 
+            type_2_lbl = tk.Label(income_window,
+                                  text = "Study link loan/student allowance:",
                                   font=("Helvetica", 15, "bold"))
-            type_3_lbl = tk.Label(income_window, 
-                                    text = "Holiday/work savings $", 
+            type_3_lbl = tk.Label(income_window,
+                                    text = "Holiday/work savings:",
                                     font=("Helvetica", 15, "bold"))
-            type_4_lbl = tk.Label(income_window, 
-                                    text = "Grants/scholarships $", 
+            type_4_lbl = tk.Label(income_window,
+                                    text = "Grants/scholarships:",
                                     font=("Helvetica", 15, "bold"))
-            type_5_lbl = tk.Label(income_window, 
-                                    text = "Family $", 
+            type_5_lbl = tk.Label(income_window,
+                                    text = "Family:",
                                     font=("Helvetica", 15, "bold"))
-            type_6_lbl = tk.Label(income_window, 
-                                    text = "One off jobs $", 
+            type_6_lbl = tk.Label(income_window,
+                                    text = "One off jobs:",
                                     font=("Helvetica", 15, "bold"))
-            type_7_lbl = tk.Label(income_window, 
-                                    text = "Other income $", 
+            type_7_lbl = tk.Label(income_window,
+                                    text = "Other income:",
                                     font=("Helvetica", 15, "bold"))
-            type_8_lbl = tk.Label(income_window, 
-                                    text = f"Total {income_type} income$", 
-                                    font=("Helvetica", 15, "bold"))
-            
+            calc_income_btn = tk.Button(income_window,
+                                    text = f"Calculate total income:",
+                                    font=("Helvetica", 15, "bold"),
+                                    bg = "gold",
+                                    command = calculate_total_income)
+            display_total_income = tk.Label(income_window,
+                                            text = f"${calculate_total_income(total_income)}")
+           
             # Create entries for each income type.
             type_1_entry = tk.Entry(income_window)
             type_2_entry = tk.Entry(income_window)
@@ -783,7 +799,32 @@ def open_main_code():
             type_5_entry = tk.Entry(income_window)
             type_6_entry = tk.Entry(income_window)
             type_7_entry = tk.Entry(income_window)
-            type_8_entry = tk.Entry(income_window)
+
+            # Keep the dollar sign permanent in income_type entries.
+            validate_cmd = (income_window.register(dollar_sign), '%P' )
+            type_1_entry.insert(tk.END, "$")
+            type_1_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_2_entry.insert(tk.END, "$")
+            type_2_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_3_entry.insert(tk.END, "$")
+            type_3_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_4_entry.insert(tk.END, "$")
+            type_4_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_5_entry.insert(tk.END, "$")
+            type_5_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_6_entry.insert(tk.END, "$")
+            type_6_entry.config(validate = 'key', validatecommand = validate_cmd)
+            type_7_entry.insert(tk.END, "$")
+            type_7_entry.config(validate = 'key', validatecommand = validate_cmd)
+
+            # Get the income type entries.
+            type_1 = type_1_entry.get()
+            type_2 = type_2_entry.get()
+            type_3 = type_3_entry.get()
+            type_4 = type_4_entry.get()
+            type_5 = type_5_entry.get()
+            type_6 = type_6_entry.get()
+            type_7 = type_7_entry.get()
 
             # Place the labels.
             income_lbl.place(x = 300, y = 300)
@@ -802,8 +843,8 @@ def open_main_code():
             type_6_entry.place(x = 660, y = 555)
             type_7_lbl.place(x = 300, y = 590)
             type_7_entry.place(x = 660, y = 595)
-            type_8_lbl.place(x = 300, y = 630)
-            type_8_entry.place(x = 660, y = 635)
+            calc_income_btn.place(x = 295, y = 630)
+            display_total_income.place(x = 660, y = 635)
 
         # Function to save the user income, validate their entries, and redirect to expenses page.
         def income_next():
@@ -819,7 +860,7 @@ def open_main_code():
         underlined_font = font.Font(size = 9, underline = True)
 
         # Create window content.
-        title = tk.Label(income_window, 
+        title = tk.Label(income_window,
                          text = "My income:",
                          font = ("Helvetica", 40))
         description_lbl = tk.Label(income_window,
@@ -831,9 +872,9 @@ def open_main_code():
                                           "calculate the total income for " +
                                           "you.",
                                    justify = LEFT)
-        canvas = Canvas(income_window, 
-                        height = 100, 
-                        width = 1210, 
+        canvas = Canvas(income_window,
+                        height = 100,
+                        width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(income_window,
                         text = "Home",
@@ -896,9 +937,9 @@ def open_main_code():
                         bg = "grey",
                         command = income_to_main)
         # Create progress bar on the side.
-        side_bar = Canvas(income_window, 
-                        height = 900, 
-                        width = 140, 
+        side_bar = Canvas(income_window,
+                        height = 900,
+                        width = 140,
                         bg = "CadetBlue2")
         income_btn = tk.Button(income_window,
                                text = "My Income",
@@ -944,7 +985,7 @@ def open_main_code():
 
         # Add income table.
         create_table(income_window)
-        
+       
         # Place labels, buttons, and images in a position.
         title.place(x = 200, y = 150)
         description_lbl.place(x = 200, y = 220)
@@ -977,11 +1018,11 @@ def open_main_code():
         def exit_expenses_window():
             response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the program?", 
+                                            "to exit the program?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(expenses_window, 
+                confirm_btn = Button(expenses_window,
                                     command = expenses_window.quit)
                 confirm_btn.pack()
                 expenses_window.destroy()
@@ -997,12 +1038,12 @@ def open_main_code():
         underlined_font = font.Font(size = 9, underline = True)
 
         # Create window content.
-        title = tk.Label(expenses_window, 
+        title = tk.Label(expenses_window,
                          text = "My expenses",
                          font = ("Helvetica", 40))
-        canvas = Canvas(expenses_window, 
-                        height = 100, 
-                        width = 1210, 
+        canvas = Canvas(expenses_window,
+                        height = 100,
+                        width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(expenses_window,
                         text = "Home",
@@ -1065,9 +1106,9 @@ def open_main_code():
                         bg = "grey",
                         command = expenses_to_income)
         # Create progress bar on the side.
-        side_bar = Canvas(expenses_window, 
-                        height = 900, 
-                        width = 140, 
+        side_bar = Canvas(expenses_window,
+                        height = 900,
+                        width = 140,
                         bg = "CadetBlue2")
         income_btn = tk.Button(expenses_window,
                                text = "My Income",
@@ -1113,7 +1154,7 @@ def open_main_code():
 
         # Add expenses table.
 
-        
+       
         # Place labels, buttons, and images in a position.
         title.place(x = 200, y = 150)
         canvas.place(x = 0, y = 20)
@@ -1142,11 +1183,11 @@ def open_main_code():
     def popup():
         response = messagebox.askquestion("Exit Programme?","Your progress will " +
                                         "NOT be saved.\nAre you sure you want " +
-                                        "to exit the program?", 
+                                        "to exit the program?",
         icon = 'warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(home_window, 
+            confirm_btn = Button(home_window,
                                 command = home_window.quit)
             confirm_btn.pack()
             home_window.destroy()
@@ -1162,11 +1203,11 @@ def open_main_code():
         def exit_profile():
             response = messagebox.askquestion("Exit profile?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the profile?", 
+                                            "to exit the profile?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(profile_window, 
+                confirm_btn = Button(profile_window,
                                     command = profile_window.quit)
                 confirm_btn.pack()
                 profile_window.destroy()
@@ -1184,12 +1225,12 @@ def open_main_code():
             print(lines)
 
         # Create widow content.
-        canvas = Canvas(profile_window, 
-                        height = 50, 
-                        width = 350, 
+        canvas = Canvas(profile_window,
+                        height = 50,
+                        width = 350,
                         bg = "CadetBlue2")
-        title_lbl = tk.Label(profile_window, 
-                            text = "Profile:", 
+        title_lbl = tk.Label(profile_window,
+                            text = "Profile:",
                             font = ("Helvetica", 15),
                             bg = "CadetBlue2")
         exit = tk.Button(profile_window,
@@ -1198,33 +1239,33 @@ def open_main_code():
                         height = 2,
                         fg = "black",
                         bg = "grey",
-                        command = exit_profile) 
-        profile_first_name_lbl = tk.Label(profile_window, 
-                                            text = (f"First name: {first_name}"), 
+                        command = exit_profile)
+        profile_first_name_lbl = tk.Label(profile_window,
+                                            text = (f"First name: {first_name}"),
                                             font = ("Helvetica", 11))
-        profile_last_name_lbl = tk.Label(profile_window, 
-                                            text = (f"Last name: {last_name}"), 
+        profile_last_name_lbl = tk.Label(profile_window,
+                                            text = (f"Last name: {last_name}"),
                                             font = ("Helvetica", 11))
-        profile_username_lbl = tk.Label(profile_window, 
-                                        text = (f"Username: {username}"), 
+        profile_username_lbl = tk.Label(profile_window,
+                                        text = (f"Username: {username}"),
                                         font = ("Helvetica", 11))
-        profile_birthdate_lbl = tk.Label(profile_window, 
-                                            text = (f"Birthdate: {birthdate}"), 
+        profile_birthdate_lbl = tk.Label(profile_window,
+                                            text = (f"Birthdate: {birthdate}"),
                                             font = ("Helvetica", 11))
-        profile_tertiary_status_lbl = tk.Label(profile_window, 
-                                                text = (f"Tertiary status: {tertiary_status_words}"), 
+        profile_tertiary_status_lbl = tk.Label(profile_window,
+                                                text = (f"Tertiary status: {tertiary_status_words}"),
                                                 font = ("Helvetica", 11))
-        profile_knowledge_lbl = tk.Label(profile_window, 
-                                            text = (f"Knowledge of budgeting: {knowledge_words}"), 
+        profile_knowledge_lbl = tk.Label(profile_window,
+                                            text = (f"Knowledge of budgeting: {knowledge_words}"),
                                             font = ("Helvetica", 11))
         signout_btn = tk.Button(profile_window,
-                                text = "Signout", 
+                                text = "Signout",
                                 width = 7,
                                 height = 1,
                                 fg = "black",
                                 bg = "firebrick1",
                                 command = signout)
-    
+   
         # Place window content.
         canvas.place(x = 0, y = 20)
         title_lbl.place(x = 10, y = 34)
@@ -1244,11 +1285,11 @@ def open_main_code():
         def exit_about():
             response = messagebox.askquestion("Exit programme?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to exit the programme?", 
+                                            "to exit the programme?",
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(about_window, 
+                confirm_btn = Button(about_window,
                                     command = about_window.quit)
                 confirm_btn.pack()
                 about_window.destroy()
@@ -1263,12 +1304,12 @@ def open_main_code():
         underlined_font = font.Font(size = 9, underline = True)
 
         # Create window content.
-        title = tk.Label(about_window, 
+        title = tk.Label(about_window,
                          text = "About this program:",
                          font = ("Helvetica", 40))
-        canvas = Canvas(about_window, 
-                        height = 100, 
-                        width = 1210, 
+        canvas = Canvas(about_window,
+                        height = 100,
+                        width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(about_window,
                             text = "Home",
@@ -1361,11 +1402,11 @@ def open_main_code():
     def income_to_help():
         response = messagebox.askquestion("Exit my income?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to go help page?", 
+                                            "to go help page?",
         icon = 'warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(income_window, 
+            confirm_btn = Button(income_window,
                                 command = income_window.quit)
             confirm_btn.pack()
             income_window.destroy()
@@ -1375,11 +1416,11 @@ def open_main_code():
     def income_to_about():
         response = messagebox.askquestion("Exit my income?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to go about page?", 
+                                            "to go about page?",
         icon = 'warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(income_window, 
+            confirm_btn = Button(income_window,
                                 command = income_window.quit)
             confirm_btn.pack()
             income_window.destroy()
@@ -1394,11 +1435,11 @@ def open_main_code():
     def expenses_to_about():
         response = messagebox.askquestion("Exit my income?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to go about page?", 
+                                            "to go about page?",
         icon = 'warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(expenses_window, 
+            confirm_btn = Button(expenses_window,
                                 command = expenses_window.quit)
             confirm_btn.pack()
             expenses_window.destroy()
@@ -1408,11 +1449,11 @@ def open_main_code():
     def expenses_to_help():
         response = messagebox.askquestion("Exit my income?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to go help page?", 
+                                            "to go help page?",
         icon = 'warning')
         print(response)
         if response == "yes":
-            confirm_btn = Button(expenses_window, 
+            confirm_btn = Button(expenses_window,
                                 command = expenses_window.quit)
             confirm_btn.pack()
             expenses_window.destroy()
@@ -1431,9 +1472,9 @@ def open_main_code():
     program_title = tk.Label(home_window,
         text = "Tertiary Budget \nTracker             ",
         font = ("Helvetica", 48))
-    canvas = Canvas(home_window, 
-                    height = 100, 
-                    width = 1210, 
+    canvas = Canvas(home_window,
+                    height = 100,
+                    width = 1210,
                     bg = "CadetBlue2")
     home_btn = tk.Button(home_window,
                         text = "Home",
@@ -1530,11 +1571,11 @@ def about_to_main():
 def expenses_to_main():
     response = messagebox.askquestion("Exit my expenses?","Your progress will " +
                                             "NOT be saved.\nAre you sure you want " +
-                                            "to go home page?", 
+                                            "to go home page?",
     icon = 'warning')
     print(response)
     if response == "yes":
-        confirm_btn = Button(expenses_window, 
+        confirm_btn = Button(expenses_window,
                             command = expenses_window.quit)
         confirm_btn.pack()
         if 'expenses_window' in globals():
