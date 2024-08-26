@@ -38,7 +38,8 @@
 
     About page: In this page you can find an introduction into budgeting and get
     a brief overview of what this program has to offer, including the process that
-    this is done.
+    this is done. IMPORTANT: About page cannot be accessed directly from help page,
+    sorry for any inconveinence.
 
     My budget: Once you have completed your budget via getting started, your
     budget plan will be saved, and can be quickly accessed by this shortcut button.
@@ -48,7 +49,8 @@
     Profile page and signing out: In this page, you can view all of your personal
     information which you have provided including first name, last name, username,
     birthdate, tertiary status, and knowledge of budgeting. At the bottom of this
-    page, there is a signout button.
+    page, there is a signout button. IMPORTANT: Signout button only works on the home
+    page and no other page, sorry for the inconveinence.
 
     In this program, a calorie deficit or surplus will be calculated based off
     your budgeting. The meanings will be displayed when it is presented. Also
