@@ -38,8 +38,7 @@
 
     About page: In this page you can find an introduction into budgeting and get
     a brief overview of what this program has to offer, including the process that
-    this is done. IMPORTANT: About page cannot be accessed directly from help page,
-    sorry for any inconveinence.
+    this is done.
 
     My budget: Once you have completed your budget via getting started, your
     budget plan will be saved, and can be quickly accessed by this shortcut button.

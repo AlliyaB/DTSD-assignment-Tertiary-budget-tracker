@@ -332,16 +332,16 @@ def open_signup_Window():
                                  command = popup)    
                
                 next_btn = tk.Button(building_profile_window,
-                           text = "Next",
-                           width = 7,
-                           height = 1,
-                           fg = "black",
-                           bg = "gold",
-                           command = next)
+                                     text = "Next",
+                                     width = 7,
+                                     height = 1,
+                                     fg = "black",
+                                     bg = "gold",
+                                     command = next)
                
                 birthdate_lbl = tk.Label(building_profile_window,
-                              text = "Birthdate (dd/mm/yyyy):",
-                              font = ("Helvetica", 10, "bold"))
+                                         text = "Birthdate (dd/mm/yyyy):",
+                                         font = ("Helvetica", 10, "bold"))
                 tertiary_lbl = tk.Label(building_profile_window,
                                         text = "Tertiary status:",
                                         font = ("Helvetica", 10, "bold"))
@@ -426,19 +426,19 @@ def open_signup_Window():
                     width = 350,
                     bg = "CadetBlue2")
     title_lbl = tk.Label(signup_window,
-                      text = "Sign up:",
-                      font = ("Helvetica", 15),
-                      bg = "CadetBlue2")
+                         text = "Sign up:",
+                         font = ("Helvetica", 15),
+                         bg = "CadetBlue2")
     subtitle_lbl = tk.Label(signup_window,
-                        text = "Create an account",
-                        font = ("Helvetica", 15))
+                            text = "Create an account",
+                            font = ("Helvetica", 15))
     open_login_btn = tk.Button(signup_window,
-                          text = "Log in",
-                          width = 10,
-                          height = 2,
-                          fg = "black",
-                          bg = "darkgrey",
-                          command = open_login_Window)
+                               text = "Log in",
+                               width = 10,
+                               height = 2,
+                               fg = "black",
+                               bg = "darkgrey",
+                               command = open_login_Window)
            
     first_name_lbl = tk.Label(signup_window,
                               text = "First name:",
@@ -666,53 +666,53 @@ def open_main_code():
                         width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(help_window,
-                        text = "Home",
-                        width = 10,
-                        height = 2,
-                        bg = "darkgrey",
-                        command = help_to_main)
+                             text = "Home",
+                             width = 10,
+                             height = 2,
+                             bg = "darkgrey",
+                             command = help_to_main)
         open_about_btn = tk.Button(help_window,
-                        text = "About",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = help_to_about)
+                                   text = "About",
+                                   width = 10,
+                                   height = 2,
+                                   fg = "black",
+                                   bg = "darkgrey",
+                                   command = help_to_about)
         open_budget_btn = tk.Button(help_window,
-                        text = "My Budget",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = help_to_income)
+                                    text = "My Budget",
+                                    width = 10,
+                                    height = 2,
+                                    fg = "black",
+                                    bg = "darkgrey",
+                                    command = help_to_income)
         open_tips_btn = tk.Button(help_window,
-                        text = "Tips",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = tips_message)
+                                  text = "Tips",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = tips_message)
         open_help_btn = tk.Button(help_window,
-                        text = "Help",
-                        font = underlined_font,
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey")
+                                  text = "Help",
+                                  font = underlined_font,
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey")
         profile_btn = tk.Button(help_window,
-                        text = "Profile",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = open_profile)
+                                text = "Profile",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "grey",
+                                command = open_profile)
         exit = tk.Button(help_window,
-                        text = "Exit",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = exit_help_window)
+                         text = "Exit",
+                         width = 10,
+                         height = 2,
+                         fg = "black",
+                         bg = "grey",
+                         command = exit_help_window)
        
         # Create user manual file.
         user_manual_file = open("User_manual.txt","rb")
@@ -833,37 +833,37 @@ def open_main_code():
                                   text = "Study link loan/student allowance:",
                                   font=("Helvetica", 15, "bold"))
             type_3_lbl = tk.Label(income_window,
-                                    text = "Holiday/work savings:",
-                                    font=("Helvetica", 15, "bold"))
+                                  text = "Holiday/work savings:",
+                                  font=("Helvetica", 15, "bold"))
             type_4_lbl = tk.Label(income_window,
-                                    text = "Grants/scholarships:",
-                                    font=("Helvetica", 15, "bold"))
+                                  text = "Grants/scholarships:",
+                                  font=("Helvetica", 15, "bold"))
             type_5_lbl = tk.Label(income_window,
-                                    text = "Family:",
-                                    font = ("Helvetica", 15, "bold"))
+                                  text = "Family:",
+                                  font = ("Helvetica", 15, "bold"))
             type_6_lbl = tk.Label(income_window,
-                                    text = "One off jobs:",
-                                    font = ("Helvetica", 15, "bold"))
+                                  text = "One off jobs:",
+                                  font = ("Helvetica", 15, "bold"))
             type_7_lbl = tk.Label(income_window,
-                                    text = "Other income:",
-                                    font = ("Helvetica", 15, "bold"))
+                                  text = "Other income:",
+                                  font = ("Helvetica", 15, "bold"))
             calc_income_btn = tk.Button(income_window,
-                                    text = f"Calculate total income:",
-                                    font = ("Helvetica", 15, "bold"),
-                                    bg = "gold",
-                                    command = calculate_total_income)
+                                        text = f"Calculate total income:",
+                                        font = ("Helvetica", 15, "bold"),
+                                        bg = "gold",
+                                        command = calculate_total_income)
             # Display a dollar sign button for every entry that is evenly
             # spaced.
             y_coord = 353
             for i in range(1, 8):
                 dollar_sign = ttk.Label(income_window,
-                                         text = "$",
-                                         font = ("Helvetica", 10))
+                                        text = "$",
+                                        font = ("Helvetica", 10))
                 dollar_sign.place(x = 650, y = y_coord)
                 y_coord += 40
             dollar_8_lbl = tk.Label(income_window,
-                                     text = "$",
-                                     font = ("Helvetica", 10))
+                                    text = "$",
+                                    font = ("Helvetica", 10))
             clear_btn = tk.Button(income_window,
                                   text = "Clear all",
                                   width = 10,
@@ -871,12 +871,12 @@ def open_main_code():
                                   bg = "firebrick1",
                                   command = clear)
             next_btn = tk.Button(income_window,
-                        text = "Next",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "gold",
-                        command = income_next)
+                                 text = "Next",
+                                 width = 10,
+                                 height = 2,
+                                 fg = "black",
+                                 bg = "gold",
+                                 command = income_next)
            
            
             # Declare income type as string variables.
@@ -972,65 +972,65 @@ def open_main_code():
                         width = 1210,
                         bg = "CadetBlue2")
         home_btn = tk.Button(income_window,
-                        text = "Home",
-                        width = 10,
-                        height = 2,
-                        bg = "darkgrey",
-                        command = income_to_main)
+                             text = "Home",
+                             width = 10,
+                             height = 2,
+                             bg = "darkgrey",
+                             command = income_to_main)
         open_about_btn = tk.Button(income_window,
-                        text = "About",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = income_to_about)
+                                   text = "About",
+                                   width = 10,
+                                   height = 2,
+                                   fg = "black",
+                                   bg = "darkgrey",
+                                   command = income_to_about)
         open_budget_btn = tk.Button(income_window,
-                        text = "My Budget",
-                        font = underlined_font,
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey")
+                                   text = "My Budget",
+                                   font = underlined_font,
+                                   width = 10,
+                                   height = 2,
+                                   fg = "black",
+                                   bg = "darkgrey")
         open_tips_btn = tk.Button(income_window,
-                        text = "Tips",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
+                                  text = "Tips",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
                         command = tips_message)
         open_help_btn = tk.Button(income_window,
-                        text = "Help",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = income_to_help)
+                                  text = "Help",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = income_to_help)
         profile_btn = tk.Button(income_window,
-                        text = "Profile",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = open_profile)
+                                text = "Profile",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "grey",
+                                command = open_profile)
         exit = tk.Button(income_window,
-                        text = "Exit",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = exit_income_window)
+                         text = "Exit",
+                         width = 10,
+                         height = 2,
+                         fg = "black",
+                         bg = "grey",
+                         command = exit_income_window)
         back_btn = tk.Button(income_window,
-                        text = "Back",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = income_to_main)
+                             text = "Back",
+                             width = 10,
+                             height = 2,
+                             fg = "black",
+                             bg = "grey",
+                             command = income_to_main)
         # Create progress bar on the side.
         side_bar = Canvas(income_window,
-                        height = 900,
-                        width = 140,
-                        bg = "CadetBlue2")
+                         height = 900,
+                         width = 140,
+                         bg = "CadetBlue2")
         income_btn = tk.Button(income_window,
                                text = "My Income",
                                font = underlined_font)
@@ -1354,7 +1354,7 @@ def open_main_code():
 
                 # Convert FORTNIGHTLY payments to weekly.
                 if income_period == "Fortnightly":
-                    fortnightly_expenditure = float(total_income.get())
+                    fortnightly_expenditure = float(total_income)
                     weekly_total_income = fortnightly_to_weekly\
                                          (fortnightly_expenditure)
                 elif a_expenses_period == "Fortnightly":
@@ -1384,7 +1384,7 @@ def open_main_code():
 
                 # Convert FOUR-WEEKLY payments to weekly.
                 elif income_period == "Four-weekly":
-                    fourweekly_expenditure = float(total_income.get())
+                    fourweekly_expenditure = float(total_income)
                     weekly_total_income = fourweekly_to_weekly\
                                         (fourweekly_expenditure)
                 elif a_expenses_period == "Four-weekly":
@@ -1414,7 +1414,7 @@ def open_main_code():
 
                 # Convert MONTHLY payments to weekly.
                 elif income_period == "Monthly":
-                    monthly_expenditure = float(total_income.get())
+                    monthly_expenditure = float(total_income)
                     weekly_total_income = monthly_to_weekly\
                         (monthly_expenditure)
                 elif a_expenses_period == "Monthly":
@@ -1444,7 +1444,7 @@ def open_main_code():
                        
                 # Convert YEARLY payments to weekly.
                 elif income_period == "Yearly":
-                    yearly_expenditure = float(total_income.get())
+                    yearly_expenditure = float(total_income)
                     weekly_total_income = yearly_to_weekly\
                         (yearly_expenditure)
                 elif a_expenses_period == "Yearly":
@@ -1508,23 +1508,24 @@ def open_main_code():
 
             # Create titles for each expense category.
             a_expenses_lbl = tk.Label(content_frame,
-                            text = "1. Household and Living Expenses:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "1. Household and Living "
+                                      "Expenses:",
+                                      font = ("Helevitica", 15, "bold"))
             b_expenses_lbl = tk.Label(content_frame,
-                            text = "2. Vehicle Related Expenses:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "2. Vehicle Related Expenses:",
+                                      font = ("Helevitica", 15, "bold"))
             c_expenses_lbl = tk.Label(content_frame,
-                            text = "3. University Related Expenses:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "3. University Related Expenses:",
+                                      font = ("Helevitica", 15, "bold"))
             d_expenses_lbl = tk.Label(content_frame,
-                            text = "4. Debt:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "4. Debt:",
+                                      font = ("Helevitica", 15, "bold"))
             e_expenses_lbl = tk.Label(content_frame,
-                            text = "5. Pet Related Expenses:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "5. Pet Related Expenses:",
+                                      font = ("Helevitica", 15, "bold"))
             f_expenses_lbl = tk.Label(content_frame,
-                            text = "6. Wants/Flexible Expenses:",
-                            font = ("Helevitica", 15, "bold"))
+                                      text = "6. Wants/Flexible Expenses:",
+                                      font = ("Helevitica", 15, "bold"))
             a_expenses_choice = ttk.Combobox(content_frame,
                                              width = 17,
                                              state = "readonly")
@@ -1642,11 +1643,11 @@ def open_main_code():
            
             # Create content for vehicle related expenses (b).
             b_type_1_lbl = tk.Label(content_frame,
-                                  text = "Gas:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Gas:",
+                                    font=("Helvetica", 15, "bold"))
             b_type_2_lbl = tk.Label(content_frame,
-                                  text = "Parking:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Parking:",
+                                    font=("Helvetica", 15, "bold"))
             b_type_3_lbl = tk.Label(content_frame,
                                     text = "Vehicle insurance:",
                                     font=("Helvetica", 15, "bold"))
@@ -1680,20 +1681,21 @@ def open_main_code():
            
             # Create content for university related expenses (c).
             c_type_1_lbl = tk.Label(content_frame,
-                                  text = "Supplies (e.g. Textbooks, "
+                                    text = "Supplies (e.g. Textbooks, "
                                   "laboratory gear):",
-                                  font=("Helvetica", 15, "bold"))
+                                    font=("Helvetica", 15, "bold"))
             c_type_2_lbl = tk.Label(content_frame,
-                                  text = "Photocopying/printing:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Photocopying/printing:",
+                                    font=("Helvetica", 15, "bold"))
             c_type_3_lbl = tk.Label(content_frame,
                                     text = "Other (e.g. Fees):",
                                     font=("Helvetica", 15, "bold"))
             c_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
-                                    font = ("Helvetica", 15, "bold"),
-                                    bg = "gold",
-                                    command = c_calculate_total_expenses)
+                                            text = f"Calculate total "
+                                            "expenses:",
+                                            font = ("Helvetica", 15, "bold"),
+                                            bg = "gold",
+                                            command = c_calculate_total_expenses)
             for i in range(45, 48):
                 c_dollar_sign = ttk.Label(content_frame,
                                          text = "$",
@@ -1709,11 +1711,11 @@ def open_main_code():
            
             # Create content for debt (d).
             d_type_1_lbl = tk.Label(content_frame,
-                                  text = "Hire purchase (e.g. Afterpay):",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Hire purchase (e.g. Afterpay):",
+                                    font=("Helvetica", 15, "bold"))
             d_type_2_lbl = tk.Label(content_frame,
-                                  text = "Credit card:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Credit card:",
+                                    font=("Helvetica", 15, "bold"))
             d_type_3_lbl = tk.Label(content_frame,
                                     text = "Debt repaymemt "
                                     "(e.g. Student loan):",
@@ -1722,39 +1724,39 @@ def open_main_code():
                                     text = "Fines:",
                                     font=("Helvetica", 15, "bold"))
             d_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
-                                    font = ("Helvetica", 15, "bold"),
-                                    bg = "gold",
-                                    command = d_calculate_total_expenses)
+                                        text = f"Calculate total expenses:",
+                                        font = ("Helvetica", 15, "bold"),
+                                        bg = "gold",
+                                        command = d_calculate_total_expenses)
             for i in range(66, 70):
                 d_dollar_sign = ttk.Label(content_frame,
-                                         text = "$",
-                                         font = ("Helvetica", 10))
+                                          text = "$",
+                                          font = ("Helvetica", 10))
                 d_dollar_sign.grid(row=i,
                                    column = 0,
                                    padx = (10, 0),
                                    pady = 5,
                                    sticky = "e")
             d_dollar_lbl = tk.Label(content_frame,
-                                     text = "$",
-                                     font = ("Helvetica", 10))
+                                    text = "$",
+                                    font = ("Helvetica", 10))
            
 
             # Create content for university related expenses (c).
             e_type_1_lbl = tk.Label(content_frame,
-                                  text = "Pet registration:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Pet registration:",
+                                    font=("Helvetica", 15, "bold"))
             e_type_2_lbl = tk.Label(content_frame,
-                                  text = "Pet food:",
-                                  font=("Helvetica", 15, "bold"))
+                                    text = "Pet food:",
+                                    font=("Helvetica", 15, "bold"))
             e_type_3_lbl = tk.Label(content_frame,
                                     text = "Vet:",
                                     font=("Helvetica", 15, "bold"))
             e_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
-                                    font = ("Helvetica", 15, "bold"),
-                                    bg = "gold",
-                                    command = e_calculate_total_expenses)
+                                        	text = f"Calculate total expenses:",
+                                            font = ("Helvetica", 15, "bold"),
+                                            bg = "gold",
+                                            command = e_calculate_total_expenses)
             for i in range(87, 90):
                 e_dollar_sign = ttk.Label(content_frame,
                                          text = "$",
@@ -1825,12 +1827,12 @@ def open_main_code():
                                   bg = "firebrick1",
                                   command = clear)
             next_btn = tk.Button(expenses_window,
-                        text = "Next",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "gold",
-                        command = expenses_next)
+                                 text = "Next",
+                                 width = 10,
+                                 height = 2,
+                                 fg = "black",
+                                 bg = "gold",
+                                 command = expenses_next)
            
             # Declare a, b, c, d, e, and f expenses types as string variables.
             a_type_1 = tk.StringVar()
@@ -2530,69 +2532,69 @@ def open_main_code():
                                    + "more expenses.",
                                    justify = LEFT)
         header_canvas = Canvas(expenses_window,
-                        height = 100,
-                        width = 1210,
-                        bg = "CadetBlue2")
+                              height = 100,
+                              width = 1210,
+                              bg = "CadetBlue2")
         home_btn = tk.Button(expenses_window,
-                        text = "Home",
-                        width = 10,
-                        height = 2,
-                        bg = "darkgrey",
-                        command = expenses_to_main)
+                             text = "Home",
+                             width = 10,
+                             height = 2,
+                             bg = "darkgrey",
+                             command = expenses_to_main)
         open_about_btn = tk.Button(expenses_window,
-                        text = "About",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = expenses_to_about)
+                             text = "About",
+                             width = 10,
+                             height = 2,
+                             fg = "black",
+                             bg = "darkgrey",
+                             command = expenses_to_about)
         open_budget_btn = tk.Button(expenses_window,
-                        text = "My Budget",
-                        font = underlined_font,
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey")
+                                    text = "My Budget",
+                                    font = underlined_font,
+                                    width = 10,
+                                    height = 2,
+                                    fg = "black",
+                                    bg = "darkgrey")
         open_tips_btn = tk.Button(expenses_window,
-                        text = "Tips",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = tips_message)
+                                  text = "Tips",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = tips_message)
         open_help_btn = tk.Button(expenses_window,
-                        text = "Help",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = expenses_to_help)
+                                  text = "Help",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = expenses_to_help)
         profile_btn = tk.Button(expenses_window,
-                        text = "Profile",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = open_profile)
+                                text = "Profile",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "grey",
+                                command = open_profile)
         exit = tk.Button(expenses_window,
-                        text = "Exit",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = exit_expenses_window)
+                         text = "Exit",
+                         width = 10,
+                         height = 2,
+                         fg = "black",
+                         bg = "grey",
+                         command = exit_expenses_window)
         back_btn = tk.Button(expenses_window,
-                        text = "Back",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = expenses_to_income)
+                             text = "Back",
+                             width = 10,
+                             height = 2,
+                             fg = "black",
+                             bg = "grey",
+                             command = expenses_to_income)
         # Create progress bar on the side.
         side_bar = Canvas(expenses_window,
-                        height = 900,
-                        width = 140,
-                        bg = "CadetBlue2")
+                          height = 900,
+                          width = 140,
+                          bg = "CadetBlue2")
         income_btn = tk.Button(expenses_window,
                                text = "My Income",
                                command = expenses_to_income)
@@ -2681,9 +2683,9 @@ def open_main_code():
                                text = "\n\nCongragulations, you have an income"
                                    + " surplus. An income surplus, "
                                    + "indicated by green font, is when "
-                                   + "incoming money exceeds your expenses, "
+                                   + "incoming money exceeds your expenses, \n"
                                    + "meaning you have more money to assign "
-                                   + "and can reach your goals quicker.\n"
+                                   + "and can reach your goals quicker."
                                    + "Consider investing more in savings or "
                                    + "making extra payments towards debt.",
                                 justify = LEFT)
@@ -2778,6 +2780,7 @@ def open_main_code():
         insights_window.resizable(False, False)
 
         underlined_font = font.Font(size = 9, underline = True)
+
         # Create window content.
         title = tk.Label(insights_window,
                          text = "My insights:",
@@ -2797,7 +2800,7 @@ def open_main_code():
                              width = 10,
                              height = 2,
                              bg = "darkgrey",
-                        command = insights_to_main)
+                             command = insights_to_main)
         open_about_btn = tk.Button(insights_window,
                                    text = "About",
                                    width = 10,
@@ -2849,9 +2852,9 @@ def open_main_code():
                              command = insights_to_expenses)
         # Create progress bar on the side.
         side_bar = Canvas(insights_window,
-                        height = 900,
-                        width = 140,
-                        bg = "CadetBlue2")
+                          height = 900,
+                          width = 140,
+                          bg = "CadetBlue2")
         income_btn = tk.Button(insights_window,
                                text = "My Income",
                                command = insights_to_income)
@@ -2859,8 +2862,8 @@ def open_main_code():
                                 text = "My expenses",
                                 command = insights_to_expenses)
         insights_btn = tk.Button(insights_window,
-                                text = "My insights",
-                                font = underlined_font)
+                                 text = "My insights",
+                                 font = underlined_font)
         # Income image.
         image = Image.open("income icon.png")
         resize_image = image.resize((50, 50))
@@ -2894,13 +2897,13 @@ def open_main_code():
         if difference > 0:
             surplus_message()
             difference_lbl = tk.Label(insights_window,
-                                      text = f"Difference ${difference}",
+                                      text = f"Difference ${difference:.2f}",
                                       font = ("Helvetica", 15),
                                       fg = "green")
         elif difference < 0:
             deficit_message()
             difference_lbl = tk.Label(insights_window,
-                                      text = f"Difference ${difference}",
+                                      text = f"Difference ${difference:.2f}",
                                       font = ("Helvetica", 15),
                                       fg = "red")
         elif difference == 0:
@@ -2910,8 +2913,8 @@ def open_main_code():
                                       font = ("Helvetica", 15))
         outcome_lbl = tk.Label(insights_window,
                                text = f"Weekly Totals:\n- Income $"
-                               + f"{weekly_total_income}\n- Expenses "
-                               + f"${weekly_total_expenses}",
+                               + f"{weekly_total_income:.2f}\n- Expenses "
+                               + f"${weekly_total_expenses:.2f}",
                                font = ("Helvetica", 15),
                                justify = LEFT)
        
@@ -2973,8 +2976,8 @@ def open_main_code():
             confirm_btn.pack()
             home_window.destroy()
 
-    # Function to inform the user that the tips page is unavailable.
     def tips_message():
+        """Function to inform the user that the tips page is unavailable."""
         messagebox.showerror("Error", "Page not found. Sorry, financial " +
                              "tips are currently unavailable. :(")
 
@@ -2984,8 +2987,8 @@ def open_main_code():
         """
         def exit_profile():
             """Function to exit profile page."""
-            response = messagebox.askquestion("Exit Programme?","Your progress "
-                                          "will NOT be saved.\nAre you sure "
+            response = messagebox.askquestion("Exit Programme?","Your progress"
+                                          " will NOT be saved.\nAre you sure "
                                           "you want to exit the profile?",
             icon = 'warning')
             print(response)
@@ -3023,7 +3026,8 @@ def open_main_code():
                         knowledge_words = additional_parts[9]
 
                         # Formatt the birthdate as (dd/mm/yyyy).
-                        birthdate = datetime.strptime(birthdate_str, "%Y-%m-%d")
+                        birthdate = datetime.strptime\
+                                    (birthdate_str, "%Y-%m-%d")
                         formatted_birthdate = birthdate.strftime("%d/%m/%Y")
 
                         return first_name, last_name, formatted_birthdate, \
@@ -3057,27 +3061,27 @@ def open_main_code():
                         bg = "grey",
                         command = exit_profile)
         first_name_lbl = tk.Label(profile_window,
-                                            text = (f"First name: "
+                                  text = (f"First name: "
                                                     f"{first_name}"),
-                                            font = ("Helvetica", 11))
+                                  font = ("Helvetica", 11))
         last_name_lbl = tk.Label(profile_window,
-                                            text = (f"Last name: {last_name}"),
-                                            font = ("Helvetica", 11))
+                                 text = (f"Last name: {last_name}"),
+                                 font = ("Helvetica", 11))
         username_lbl = tk.Label(profile_window,
-                                        text = (f"Username: {username}"),
-                                        font = ("Helvetica", 11))
+                                text = (f"Username: {username}"),
+                                font = ("Helvetica", 11))
         birthdate_lbl = tk.Label(profile_window,
-                                            text = (f"Birthdate: "
+                                 text = (f"Birthdate: "
                                                     f"{formatted_birthdate}"),
-                                            font = ("Helvetica", 11))
+                                 font = ("Helvetica", 11))
         tertiary_status_lbl = tk.Label(profile_window,
-                                        text = (f"Tertiary status: "
+                                       text = (f"Tertiary status: "
                                                 f"{tertiary_status_words}"),
-                                                font = ("Helvetica", 11))
+                                       font = ("Helvetica", 11))
         knowledge_lbl = tk.Label(profile_window,
-                                            text = (f"Knowledge of budgeting: "
+                                 text = (f"Knowledge of budgeting: "
                                                     f"{knowledge_words}"),
-                                            font = ("Helvetica", 11))
+                                 font = ("Helvetica", 11))
         signout_btn = tk.Button(profile_window,
                                 text = "Signout",
                                 width = 7,
@@ -3098,11 +3102,11 @@ def open_main_code():
         tertiary_status_lbl.place(x = 20, y = 220)
         knowledge_lbl.place(x = 20, y = 250)
 
-    # Function to open the about window.
     def open_about_window():
+        """Function to open the about window."""
 
-        # Function to exit profile page.
         def exit_about():
+            """Function to exit profile page."""
             response = messagebox.askquestion("Exit Programme?","Your progress"
                                           " will NOT be saved.\nAre you sure "
                                           "you want to exit the program?",
@@ -3138,51 +3142,51 @@ def open_main_code():
                             bg = "darkgrey",
                             command = about_to_main)
         open_about_btn = tk.Button(about_window,
-                        text = "About",
-                        font = underlined_font,
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey")
+                                   text = "About",
+                                   font = underlined_font,
+                                   width = 10,
+                                   height = 2,
+                                   fg = "black",
+                                   bg = "darkgrey")
         open_budget_btn = tk.Button(about_window,
-                        text = "My Budget",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = about_to_income)
+                                   text = "My Budget",
+                                   width = 10,
+                                   height = 2,
+                                   fg = "black",
+                                   bg = "darkgrey",
+                                   command = about_to_income)
         open_tips_btn = tk.Button(about_window,
-                        text = "Tips",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = tips_message)
+                                  text = "Tips",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = tips_message)
         open_help_btn = tk.Button(about_window,
-                        text = "Help",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "darkgrey",
-                        command = about_to_help)
+                                  text = "Help",
+                                  width = 10,
+                                  height = 2,
+                                  fg = "black",
+                                  bg = "darkgrey",
+                                  command = about_to_help)
         profile_btn = tk.Button(about_window,
-                        text = "Profile",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = open_profile)
+                                text = "Profile",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "grey",
+                                command = open_profile)
         exit = tk.Button(about_window,
-                        text = "Exit",
-                        width = 10,
-                        height = 2,
-                        fg = "black",
-                        bg = "grey",
-                        command = exit_about)
+                         text = "Exit",
+                         width = 10,
+                         height = 2,
+                         fg = "black",
+                         bg = "grey",
+                         command = exit_about)
        
         # Create window content.
         intro_label = tk.Label(about_window,
-                                 text = "Introduction: A budget is a "
+                               text = "Introduction: A budget is a "
                                     "generated spending plan based off your "
                                     "financial wants and needs. \nIt includes "
                                     "prioritizing and allocating various "
@@ -3291,11 +3295,11 @@ def open_main_code():
 
     def help_to_about():
         """Function to take the user from help page to about page."""
-        about_window.destroy()
+        help_window.destroy()
         open_about_window()
 
-    # Function to take the user from income page to help page.
     def income_to_help():
+        """Function to take the user from income page to help page."""
         response = messagebox.askquestion("Exit Programme?","Your progress "
                                           "will NOT be saved.\nAre you sure "
                                           "you want to exit the help page?",
@@ -3308,8 +3312,8 @@ def open_main_code():
             income_window.destroy()
             open_help_window()
 
-    # Function to take the user from income page to about page.
     def income_to_about():
+        """Function to take the user from income page to about page."""
         response = messagebox.askquestion("Exit income?","Your progress "
                                           "will NOT be saved.\nAre you sure "
                                           "you want to exit the about page?",
@@ -3336,11 +3340,6 @@ def open_main_code():
         """Function to take the user from income page to expenses page."""
         income_window.destroy()
         open_expenses_window()
-
-    def income_to_insights():
-        """Function to take the user from income page to insights page."""
-        income_window.destroy()
-        open_insights_window()
 
     def expenses_to_about():
         """Function to take the user from expenses page to about page."""
@@ -3397,67 +3396,67 @@ def open_main_code():
 
     # Create window content.
     program_title = tk.Label(home_window,
-        text = "Tertiary Budget \nTracker             ",
-        font = ("Helvetica", 48))
+                             text = "Tertiary Budget \nTracker             ",
+                             font = ("Helvetica", 48))
     canvas = Canvas(home_window,
                     height = 100,
                     width = 1210,
                     bg = "CadetBlue2")
     home_btn = tk.Button(home_window,
-                        text = "Home",
-                        font = underlined_font,
-                        width = 10,
-                        height = 2,
-                        bg = "darkgrey")
+                         text = "Home",
+                         font = underlined_font,
+                         width = 10,
+                         height = 2,
+                         bg = "darkgrey")
     open_about_btn = tk.Button(home_window,
-                    text = "About",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "darkgrey",
-                    command = home_to_about)
+                               text = "About",
+                               width = 10,
+                               height = 2,
+                               fg = "black",
+                               bg = "darkgrey",
+                               command = home_to_about)
     open_budget_btn = tk.Button(home_window,
-                    text = "My Budget",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "darkgrey",
-                    command = home_to_income)
+                                text = "My Budget",
+                                width = 10,
+                                height = 2,
+                                fg = "black",
+                                bg = "darkgrey",
+                                command = home_to_income)
     open_tips_btn = tk.Button(home_window,
-                    text = "Tips",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "darkgrey",
-                    command = tips_message)
+                              text = "Tips",
+                              width = 10,
+                              height = 2,
+                              fg = "black",
+                              bg = "darkgrey",
+                              command = tips_message)
     open_help_btn = tk.Button(home_window,
-                    text = "Help",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "darkgrey",
-                    command = home_to_help)
+                              text = "Help",
+                              width = 10,
+                              height = 2,
+                              fg = "black",
+                              bg = "darkgrey",
+                              command = home_to_help)
     start_btn = tk.Button(home_window,
-                            text = "Get started!",
-                            width = 15,
-                            height = 2,
-                            font = ("Helvetica", 20),
-                            bg = "gold",
-                            command = home_to_income)
+                          text = "Get started!",
+                          width = 15,
+                          height = 2,
+                          font = ("Helvetica", 20),
+                          bg = "gold",
+                          command = home_to_income)
     profile_btn = tk.Button(home_window,
-                    text = "Profile",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "grey",
-                    command = open_profile)
+                            text = "Profile",
+                            width = 10,
+                            height = 2,
+                            fg = "black",
+                            bg = "grey",
+                            command = open_profile)
     exit = tk.Button(home_window,
-                    text = "Exit",
-                    width = 10,
-                    height = 2,
-                    fg = "black",
-                    bg = "grey",
-                    command = popup)
+                     text = "Exit",
+                     width = 10,
+                     height = 2,
+                     fg = "black",
+                     bg = "grey",
+                     command = popup)
     image = Image.open("Lean-Budgeting-Part-One 1.png")
     resize_image = image.resize((1200, 250))
     img = ImageTk.PhotoImage(resize_image)
