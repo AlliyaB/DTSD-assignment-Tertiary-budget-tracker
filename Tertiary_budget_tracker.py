@@ -1,19 +1,14 @@
-# Import tkinter, date, and datetime.
+"""Import modules."""
 import tkinter as tk
-from tkinter import  *
-from tkinter.ttk import *
-from tkinter import messagebox
-from PIL import ImageTk
-from PIL import Image
-from datetime import datetime
-from datetime import date
-from tkinter import font
-import sys;
-from tkinter import ttk
-import io
-from matplotlib.figure import Figure
+from datetime import date, datetime
+from tkinter import (BOTTOM, END, LEFT, NONE, RIGHT, Button, Canvas, Label,
+                     Scrollbar, StringVar, Text, Toplevel, Y, font, messagebox,
+                     ttk)
+
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import numpy as np
+from matplotlib.figure import Figure
+from PIL import Image, ImageTk
+
 
 def open_first_window():
     """Function to open the first window."""
@@ -29,7 +24,7 @@ def open_first_window():
                                 command = first_window.quit)
             confirm_btn.pack()
             first_window.destroy()
-           
+
     # Create Log in/sign up window.
     global first_window
     first_window = tk.Tk()
@@ -56,16 +51,16 @@ def open_first_window():
                     height = 2,
                     fg = "black",
                     bg = "darkgrey",
-                    command = open_signup_Window)
+                    command = open_signup_window)
     login_btn = tk.Button(first_window,
                     text = "Log in",
                     width = 10,
                     height = 2,
                     fg = "black",
                     bg = "darkgrey",
-                    command = open_login_Window)
-    exit = tk.Button(first_window,
-                    text = "Exit",
+                    command = open_login_window)
+    exit_btn = tk.Button(first_window,
+                    text = "exit",
                     width = 10,
                     height = 2,
                     fg = "black",
@@ -84,13 +79,11 @@ def open_first_window():
     info_lbl_two.place(x = 200, y = 400)
 
     # Add image to the first window.
-    image = Image.open("Lean-Budgeting-Part-One 1.png")
-   
-    # Resize the image using resize() method
+    image = Image.open("budget_image.png")
+    # Resize the image using resize() method.
     resize_image = image.resize((1200, 250))
     img = ImageTk.PhotoImage(resize_image)
-   
-    # create label and add resize image
+    # Create label and add resize image.
     label1 = Label(image = img)
     label1.image = img
 
@@ -98,20 +91,19 @@ def open_first_window():
     canvas.place(x = 0, y = 20)
     login_btn.place(x = 900, y = 40)
     open_signup_btn.place(x = 990, y = 40)
-    exit.place(x = 1110, y = 40)
+    exit_btn.place(x = 1110, y = 40)
     label1.place(x = 0, y = 450)
 
     first_window.mainloop()
-   
-   
-def open_signup_Window():
+
+
+def open_signup_window():
     """Funtion to open signup window when button is clicked."""
     def signup():
         """Direct user to building profile page after signing in."""
-       
         def popup():
             """Function to ensure the user wants to exit the
-            building_profile_window.
+            bp_window.
             """
             response = messagebox.askquestion("Exit Programme?","Your "
                                               + "progress will NOT be saved."
@@ -120,10 +112,10 @@ def open_signup_Window():
             icon = 'warning')
             print(response)
             if response == "yes":
-                confirm_btn = Button(building_profile_window,
-                                     command = building_profile_window.quit)
+                confirm_btn = Button(bp_window,
+                                     command = bp_window.quit)
                 confirm_btn.pack()
-                building_profile_window.destroy()
+                bp_window.destroy()
 
         def tertiary_message():
             """Function to output message when tertiary button is clicked."""
@@ -172,7 +164,7 @@ def open_signup_Window():
                                      "fields.\nPlease select a tertiary "
                                      "status.")
 
-        def next():
+        def building_profile_next():
             """Function to validate the user input on building profile page
             and redirect to homepage.
             """
@@ -180,18 +172,18 @@ def open_signup_Window():
             knowledge = knowledge_var.get()
             tertiary_status = tertiary_status_var.get()
             try:
-                # Convert the string to a datetime object
+                # Convert the string to a datetime object.
                 birthdate = datetime.strptime(birthdate, '%d/%m/%Y')
                 # Get todays date.
                 today = date.today()
                 # Find the difference between today and the date of birth.
                 difference = today.year - birthdate.year
                 # Find out if today preceeds the date of birth this year.
-                today_precedes_DOB = (today.month, today.day) < \
+                today_precedes_dob = (today.month, today.day) < \
                     (birthdate.month, birthdate.day)
-                age = difference - today_precedes_DOB
+                age = difference - today_precedes_dob
             except ValueError:
-                # Show an error if the date format is incorrect
+                # Show an error if the date format is incorrect.
                 messagebox.showerror("Invalid input", "Please enter a valid "
                                      "birthdate (dd/mm/yyyy)")
             if age <= 0 or age > 99:
@@ -231,7 +223,7 @@ def open_signup_Window():
                 knowledge_words = "Average"
             if knowledge == "3":
                 knowledge_words = "Excellent"
-            with open("Existing Users.txt", "a") as file:
+            with open("existing_users.txt", "a") as file:
                 file.write(f"Birthdate: {birthdate} Tertiary status: "
                            f"{tertiary_status_words} Knowledge of budgeting:"
                            f" {knowledge_words}\n\n")
@@ -250,7 +242,7 @@ def open_signup_Window():
         if first_name and last_name and username and password and \
             confirm_password:
             try:
-                with open("Existing Users.txt", "r") as file:
+                with open("existing_users.txt", "r") as file:
                     usernames = file.read().splitlines()
             except FileNotFoundError:
                 usernames = []
@@ -269,12 +261,13 @@ def open_signup_Window():
                 messagebox.showerror("Invalid password", "Please check " +
                                      "that your passwords match.")
             else:
-                with open("Existing Users.txt", "a") as file:
+                with open("existing_users.txt", "a") as file:
                     file.write(f"{username}\n")
                     file.write(f"Full name: {first_name} {last_name} " +
                                f"Username: {username} Password: {password}\n")
+
                 # Add this user to the recent users file.
-                with open("Recent_users.txt", "a") as file:
+                with open("recent_users.txt", "a") as file:
                     file.write(f"{username}\n")
                 print("First name: " + first_name)
                 print("Last name: " + last_name)
@@ -290,13 +283,13 @@ def open_signup_Window():
                                     f"\nWelcome {username}")
                 first_window.destroy()
 
-                # Create building profile page, user will be directed here
+                # Create building profile (bp) page, user will be directed here
                 # after signing up.
-                global building_profile_window
-                building_profile_window = tk.Tk()
-                building_profile_window.geometry("300x350")
-                building_profile_window.title("Building profile")
-                building_profile_window.resizable(False, False)
+                global bp_window
+                bp_window = tk.Tk()
+                bp_window.geometry("300x350")
+                bp_window.title("Building profile")
+                bp_window.resizable(False, False)
 
                 # Print today's date, neccassary for calculating the users age.
                 # Print todays date.
@@ -311,46 +304,44 @@ def open_signup_Window():
                 knowledge_var = tk.StringVar()
 
                 # Create window content with labels, canvas, and buttons.
-                canvas = Canvas(building_profile_window,
+                canvas = Canvas(bp_window,
                                 height = 50,
                                 width = 350,
                                 bg = "CadetBlue2", )
-                title_lbl = tk.Label(building_profile_window,
+                title_lbl = tk.Label(bp_window,
                                      text = "Building profile:",
                                      font = ("Helvetica", 15),
                                      bg = "CadetBlue2")
-                subtitle_lbl = tk.Label(building_profile_window,
-                                       text = f"Let's get to know you better!"
+                subtitle_lbl = tk.Label(bp_window,
+                                       text = "Let's get to know you better!"
                                        "\nPlease enter the following",
                                        font = ("Helvetica", 10))
-                exit = tk.Button(building_profile_window,
+                exit_btn = tk.Button(bp_window,
                                  text = "Exit",
                                  width = 10,
                                  height = 2,
                                  fg = "black",
                                  bg = "grey",
-                                 command = popup)    
-               
-                next_btn = tk.Button(building_profile_window,
+                                 command = popup)
+                next_btn = tk.Button(bp_window,
                                      text = "Next",
                                      width = 7,
                                      height = 1,
                                      fg = "black",
                                      bg = "gold",
-                                     command = next)
-               
-                birthdate_lbl = tk.Label(building_profile_window,
+                                     command = building_profile_next)
+                birthdate_lbl = tk.Label(bp_window,
                                          text = "Birthdate (dd/mm/yyyy):",
                                          font = ("Helvetica", 10, "bold"))
-                tertiary_lbl = tk.Label(building_profile_window,
+                tertiary_lbl = tk.Label(bp_window,
                                         text = "Tertiary status:",
                                         font = ("Helvetica", 10, "bold"))
-                knowledge_lbl = tk.Label(building_profile_window,
+                knowledge_lbl = tk.Label(bp_window,
                                         text = "Knowledge of budgeting:",
                                         font = ("Helvetica", 10, "bold"))
 
                 # Entrys.
-                birthdate_entry = tk.Entry(building_profile_window,
+                birthdate_entry = tk.Entry(bp_window,
                                             textvariable = birthdate_var)
 
                 # Dictionary to create multiple options for tertiary status.
@@ -360,13 +351,13 @@ def open_signup_Window():
                 # status.
                 x_coord = 20
                 for (text, value) in tertiary_status_dict.items():
-                    tertiary_status_btn = Radiobutton(building_profile_window,
-                                                      text = text,
-                                                      variable = \
-                                                      tertiary_status_var,
-                                                      value = value,
-                                                      command = \
-                                                      tertiary_message)
+                    tertiary_status_btn = ttk.Radiobutton(bp_window,
+                                                          text = text,
+                                                          variable = \
+                                                          tertiary_status_var,
+                                                          value = value,
+                                                          command = \
+                                                          tertiary_message)
                     tertiary_status_btn.place(x = x_coord, y = 212.5)
                     x_coord += 112 # Provide distance between buttons.
 
@@ -374,33 +365,30 @@ def open_signup_Window():
                 knowledge_dict = {"Very Poor" : "1",
                                   "Average" : "2",
                                   "Excellent" : "3"}
-               
+
                 # Use a loop to create multiple radiobuttons for knowledge.
                 x_coord = 20
                 for (text, value) in knowledge_dict.items():
-                    knowledge_btn = Radiobutton(building_profile_window,
-                                                text = text,
-                                                variable = knowledge_var,
-                                                value = value,
-                                                command = knowledge_message)
+                    knowledge_btn = ttk.Radiobutton(bp_window,
+                                                    text = text,
+                                                    variable = knowledge_var,
+                                                    value = value,
+                                                    command = \
+                                                    knowledge_message)
                     knowledge_btn.place(x = x_coord, y = 270)
                     x_coord += 87
-               
+
                 # Placing the labels and entries.
                 canvas.place(x = 0, y = 20)
                 title_lbl.place(x = 10, y = 34)
                 subtitle_lbl.place(x = 60, y = 80)
-                exit.place(x = 200, y = 27)
+                exit_btn.place(x = 200, y = 27)
                 next_btn.place(x = 120, y = 315)
-
                 birthdate_lbl.place(x = 20, y = 130)
                 birthdate_entry.place(x = 20, y = 155)
-
                 tertiary_lbl.place(x = 20, y = 187.5)
-
                 knowledge_lbl.place(x = 20, y = 245)
-
-                building_profile_window.mainloop()
+                bp_window.mainloop()
 
         else:
             messagebox.showerror("Invalid input", "There are missing " +
@@ -419,7 +407,6 @@ def open_signup_Window():
     username_var = tk.StringVar()
     password_var = tk.StringVar()
     confirm_password_var = tk.StringVar()
-   
     # Create window content with labels, canvas, and buttons.
     canvas = Canvas(signup_window,
                     height = 50,
@@ -438,8 +425,7 @@ def open_signup_Window():
                                height = 2,
                                fg = "black",
                                bg = "darkgrey",
-                               command = open_login_Window)
-           
+                               command = open_login_window)
     first_name_lbl = tk.Label(signup_window,
                               text = "First name:",
                               font = ("Helvetica", 10, "bold"))
@@ -502,7 +488,7 @@ def open_signup_Window():
     signup_window.mainloop()
 
 
-def open_login_Window():
+def open_login_window():
     """Function to open log in window when button is clicked."""
     def login():
         """Function to validate user input and check the user exists in
@@ -513,7 +499,7 @@ def open_login_Window():
 
         if username and password:
             try:
-                with open("Existing Users.txt", "r") as file:
+                with open("existing_users.txt", "r") as file:
                     lines = file.read().splitlines()
                     # Check if a line has username and password.
                     user_exists = any(f"Username: {username}" in line and \
@@ -524,7 +510,7 @@ def open_login_Window():
                     print(f"Password: {password}")
                     username_var.set("")
                     password_var.set("")
-                    messagebox.showinfo("Successful", f"Log in successful." +
+                    messagebox.showinfo("Successful", "Log in successful." +
                                         f"\nWelcome back {username}")
                     # Write the users username in recent users file.
                     with open("recent_users.txt", "a") as file:
@@ -571,7 +557,7 @@ def open_login_Window():
                                 height = 2,
                                 fg = "black",
                                 bg = "darkgrey",
-                                command = open_signup_Window)
+                                command = open_signup_window)
 
     username_lbl = tk.Label(login_window,
                             text = "Username:",
@@ -627,8 +613,8 @@ def exit_login_window():
 
 def exit_signup_window():
     """Function to exit the sign up window and go to the main code."""
-    if 'building_profile_window' in globals():
-        building_profile_window.destroy()
+    if 'bp_window' in globals():
+        bp_window.destroy()
     open_main_code()
 
 
@@ -636,7 +622,6 @@ def open_main_code():
     """Function where the main code is."""
     def open_help_window():
         """Function to open help window."""
-
         def exit_help_window():
             """Function to ensure the user wants to exit the help_window."""
             response = messagebox.askquestion("Exit Programme?","Your progress"
@@ -706,16 +691,15 @@ def open_main_code():
                                 fg = "black",
                                 bg = "grey",
                                 command = open_profile)
-        exit = tk.Button(help_window,
+        exit_btn = tk.Button(help_window,
                          text = "Exit",
                          width = 10,
                          height = 2,
                          fg = "black",
                          bg = "grey",
                          command = exit_help_window)
-       
         # Create user manual file.
-        user_manual_file = open("User_manual.txt","rb")
+        user_manual_file = open("user_manual.txt","rb")
         user_manual = user_manual_file.read()
 
         # Create a vertical scrollbar where the user manual is displayed.
@@ -736,7 +720,7 @@ def open_main_code():
         open_tips_btn.place(x = 632, y = 40)
         open_help_btn.place(x = 826, y = 40)
         profile_btn.place(x = 1020, y = 40)
-        exit.place(x = 1110, y = 40)
+        exit_btn.place(x = 1110, y = 40)
         scrollbar.pack(side = RIGHT, fill = Y)
         text_box.pack(side = BOTTOM)
 
@@ -758,7 +742,7 @@ def open_main_code():
                 confirm_btn.pack()
                 income_window.destroy()
 
-        def create_table(income_window):
+        def create_table():
             """Function to create income table."""
             def clear():
                 """Function to clear all user input."""
@@ -771,7 +755,7 @@ def open_main_code():
                 type_6.set("")
                 type_7.set("")
                 total_income.set("")
-           
+
             def calculate_total_income():
                 """Functiton to calculate total income."""
                 try:
@@ -779,8 +763,7 @@ def open_main_code():
                             + float(type_3.get()) + float(type_4.get()) \
                             + float(type_5.get()) + float(type_6.get()) \
                             + float(type_7.get())
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     result = messagebox.showerror("Invalid input", "Please "
                                                   + "enter all fields using "
                                                   + "number 0 and/or "
@@ -798,12 +781,12 @@ def open_main_code():
                                + f"{type_3.get()}\n{type_4.get()}\n"
                                + f"{type_5.get()}\n{type_6.get()}\n"
                                + f"{type_7.get()}\n{total_income.get()}\n\n")
-                with open("User_finance_info.txt", "a") as file:
+                with open("user_finance_info.txt", "a") as file:
                     file.write(f"Income ({income_period}):\n{income_info}")
                 messagebox.showinfo("Save successfull", "Your income has "
                                     "successfully been saved.")
                 income_to_expenses()
-           
+
             income_lbl = tk.Label(income_window,
                             text = "Income type:",
                             font = ("Helevitica", 15, "bold"))
@@ -823,7 +806,6 @@ def open_main_code():
 
             # Shows weekly as a default value
             income_choice.current(0)
-            # income_type = income_type_var.get()
 
             # Create labels for each of the income types and the total income.
             type_1_lbl = tk.Label(income_window,
@@ -848,14 +830,14 @@ def open_main_code():
                                   text = "Other income:",
                                   font = ("Helvetica", 15, "bold"))
             calc_income_btn = tk.Button(income_window,
-                                        text = f"Calculate total income:",
+                                        text = "Calculate total income:",
                                         font = ("Helvetica", 15, "bold"),
                                         bg = "gold",
                                         command = calculate_total_income)
             # Display a dollar sign button for every entry that is evenly
             # spaced.
             y_coord = 353
-            for i in range(1, 8):
+            for _ in range(1, 8):
                 dollar_sign = ttk.Label(income_window,
                                         text = "$",
                                         font = ("Helvetica", 10))
@@ -877,8 +859,7 @@ def open_main_code():
                                  fg = "black",
                                  bg = "gold",
                                  command = income_next)
-           
-           
+
             # Declare income type as string variables.
             type_1 = tk.StringVar()
             type_2 = tk.StringVar()
@@ -937,7 +918,7 @@ def open_main_code():
             messagebox.showerror("No input", "Please enter your income "
                                  + "and expenses so that insights can be "
                                  + "made. \nThen click next to continue.")
-           
+
         def expenses_message():
             """Function to tell the user to enter their income and expenses.
             """
@@ -1012,7 +993,7 @@ def open_main_code():
                                 fg = "black",
                                 bg = "grey",
                                 command = open_profile)
-        exit = tk.Button(income_window,
+        exit_btn = tk.Button(income_window,
                          text = "Exit",
                          width = 10,
                          height = 2,
@@ -1041,7 +1022,7 @@ def open_main_code():
                                 text = "My insights",
                                 command = insights_message)
         # Income image.
-        image = Image.open("income icon.png")
+        image = Image.open("income_image.png")
         resize_image = image.resize((50, 50))
         img = ImageTk.PhotoImage(resize_image)
         income_image = tk.Label(image = img,
@@ -1065,8 +1046,8 @@ def open_main_code():
         insights_image.image = img
 
         # Add income table.
-        create_table(income_window)
-       
+        create_table()
+
         # Place labels, buttons, and images in a position.
         title.place(x = 200, y = 150)
         description_lbl.place(x = 200, y = 220)
@@ -1084,14 +1065,13 @@ def open_main_code():
         open_tips_btn.place(x = 632, y = 40)
         open_help_btn.place(x = 826, y = 40)
         profile_btn.place(x = 1020, y = 40)
-        exit.place(x = 1110, y = 40)
+        exit_btn.place(x = 1110, y = 40)
         back_btn.place(x = 150, y = 700)
 
         income_window.mainloop()
 
     def open_expenses_window():
         """Function to open my expenses page."""
-
         def exit_expenses_window():
             """Function to ensure the user wants to exit the
             expenses_window.
@@ -1110,9 +1090,11 @@ def open_main_code():
 
         def update_scrollregion(event):
             """Configure the Canvas and Scrollable Content Frame"""
+            # The 'event' parameter is required by the event handler but is
+            # not used.
             canvas.configure(scrollregion = canvas.bbox("all"))
 
-        def create_table(expenses_window):
+        def create_table():
             """Function to create household and living expenses table.."""
             def clear():
                 """Function to clear all user input."""
@@ -1166,7 +1148,7 @@ def open_main_code():
                 d_total_expenses.set("")
                 e_total_expenses.set("")
                 f_total_expenses.set("")
-           
+
             def a_calculate_total_expenses():
                 """Functiton to calculate total expenses."""
                 try:
@@ -1177,8 +1159,7 @@ def open_main_code():
                             + float(a_type_9.get()) + float(a_type_10.get()) \
                             + float(a_type_11.get()) + float(a_type_12.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     a_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1195,8 +1176,7 @@ def open_main_code():
                                + float(b_type_5.get()) \
                                + float(b_type_6.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     b_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1210,8 +1190,7 @@ def open_main_code():
                     c_result = float(c_type_1.get()) + float(c_type_2.get()) \
                                + float(c_type_3.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     c_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1225,8 +1204,7 @@ def open_main_code():
                     d_result = float(d_type_1.get()) + float(d_type_2.get()) \
                                + float(d_type_3.get()) + float(d_type_4.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     d_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1240,8 +1218,7 @@ def open_main_code():
                     e_result = float(e_type_1.get()) + float(e_type_2.get()) \
                                + float(e_type_3.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     e_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1258,8 +1235,7 @@ def open_main_code():
                             + float(f_type_7.get()) + float(f_type_8.get()) \
                             + float(f_type_9.get())
 
-                except Exception as ex:
-                    print(ex)
+                except ValueError:
                     f_result = messagebox.showerror("Invalid input", "Please "
                                                     "enter all fields using "
                                                     "number 0 and/or "
@@ -1275,29 +1251,29 @@ def open_main_code():
                     """Read the user information from user finance info and
                     find the income period which is in brackets.
                     """
-                    with open("User_finance_info.txt", "r") as file:
+                    with open("user_finance_info.txt", "r") as file:
                         for line in file:
                             if "Income" in line:
                                 start_idx = line.find('(')
                                 end_idx = line.find(')')
-                               
+
                                 if start_idx != -1 and end_idx != -1 and \
                                     end_idx > start_idx:
                                     income_period = line\
                                     [start_idx + 1:end_idx].strip()
 
                                     return income_period
-                               
+
                 def get_total_income():
                     """Read user finance info file and get total income."""
-                    with open("User_finance_info.txt", "r") as file:
+                    with open("user_finance_info.txt", "r") as file:
                         lines = file.readlines()
                         for i, line in enumerate(lines):
                             if "Income" in line:
                                 total_income = float(lines[i + 8].strip())
 
                                 return total_income
-                               
+
                 def monthly_to_weekly(monthly_expenditure):
                     """Convert monthly expenditure to weekly expenditure."""
                     average_weeks_per_month = 4.345
@@ -1305,7 +1281,7 @@ def open_main_code():
                                         average_weeks_per_month
 
                     return weekly_expenditure
-               
+
                 def fortnightly_to_weekly(fortnightly_expenditure):
                     """Convert fortnightly expenditure to weekly
                     expenditure.
@@ -1313,7 +1289,7 @@ def open_main_code():
                     weekly_expenditure = float(fortnightly_expenditure) / 2
 
                     return weekly_expenditure
-               
+
                 def fourweekly_to_weekly(fourweekly_expenditure):
                     """Convert four-weekly expenditure to weekly
                     expenditure.
@@ -1321,7 +1297,7 @@ def open_main_code():
                     weekly_expenditure = float(fourweekly_expenditure) / 4
 
                     return weekly_expenditure
-               
+
                 def yearly_to_weekly(yearly_expenditure):
                     """Convert yearly expenditure to weekly expenditure."""
                     weekly_expenditure = float(yearly_expenditure) / 52
@@ -1441,7 +1417,7 @@ def open_main_code():
                     monthly_expenditure = float(f_total_expenses.get())
                     weekly_f_expenses = monthly_to_weekly\
                         (monthly_expenditure)
-                       
+
                 # Convert YEARLY payments to weekly.
                 elif income_period == "Yearly":
                     yearly_expenditure = float(total_income)
@@ -1471,7 +1447,7 @@ def open_main_code():
                     yearly_expenditure = float(f_total_expenses.get())
                     weekly_f_expenses = yearly_to_weekly\
                         (yearly_expenditure)
-                   
+
                 # Add all the expenses together.
                 weekly_total_expenses = float(weekly_a_expenses
                                          + weekly_b_expenses
@@ -1479,15 +1455,15 @@ def open_main_code():
                                          + weekly_d_expenses
                                          + weekly_e_expenses
                                          + weekly_f_expenses)
-               
+
                 difference = float(weekly_total_income - weekly_total_expenses)
-                print(f"The difference between income and expenses is: "
+                print("The difference between income and expenses is: "
                       + f"{difference:.2f}")
 
                 # Put all the users expense info in a file.
-                with open("User_finance_info.txt", "a") as file:
+                with open("user_finance_info.txt", "a") as file:
                     file.write(f"Weekly total income: {weekly_total_income}\n"
-                               + f"Weekly total expenses: "
+                               + "Weekly total expenses: "
                                + f"{weekly_total_expenses}\n"
                                + f"Weekly a expenses: {weekly_a_expenses}\n"
                                + f"Weekly b expenses: {weekly_b_expenses}\n"
@@ -1499,7 +1475,7 @@ def open_main_code():
                 messagebox.showinfo("Save successfull", "Your expenses has "
                                     + "successfully been saved.")
                 expenses_to_insights()
-           
+
             def on_mousewheel(event):
                 """Bind the Canvas to Mousewheel Events."""
                 canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
@@ -1623,7 +1599,7 @@ def open_main_code():
                                     text = "Other required costs:",
                                     font = ("Helvetica", 15, "bold"))
             a_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
+                                    text = "Calculate total expenses:",
                                     font = ("Helvetica", 15, "bold"),
                                     bg = "gold",
                                     command = a_calculate_total_expenses)
@@ -1640,7 +1616,7 @@ def open_main_code():
             dollar_13_lbl = tk.Label(content_frame,
                                      text = "$",
                                      font = ("Helvetica", 10))
-           
+
             # Create content for vehicle related expenses (b).
             b_type_1_lbl = tk.Label(content_frame,
                                     text = "Gas:",
@@ -1661,7 +1637,7 @@ def open_main_code():
                                     text = "Vehicle repairs:",
                                     font = ("Helvetica", 15, "bold"))
             b_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
+                                    text = "Calculate total expenses:",
                                     font = ("Helvetica", 15, "bold"),
                                     bg = "gold",
                                     command = b_calculate_total_expenses)
@@ -1678,7 +1654,7 @@ def open_main_code():
             b_dollar_lbl = tk.Label(content_frame,
                                      text = "$",
                                      font = ("Helvetica", 10))
-           
+
             # Create content for university related expenses (c).
             c_type_1_lbl = tk.Label(content_frame,
                                     text = "Supplies (e.g. Textbooks, "
@@ -1691,11 +1667,12 @@ def open_main_code():
                                     text = "Other (e.g. Fees):",
                                     font=("Helvetica", 15, "bold"))
             c_calc_expenses_btn = tk.Button(content_frame,
-                                            text = f"Calculate total "
+                                            text = "Calculate total "
                                             "expenses:",
                                             font = ("Helvetica", 15, "bold"),
                                             bg = "gold",
-                                            command = c_calculate_total_expenses)
+                                            command = \
+                                            c_calculate_total_expenses)
             for i in range(45, 48):
                 c_dollar_sign = ttk.Label(content_frame,
                                          text = "$",
@@ -1708,7 +1685,7 @@ def open_main_code():
             c_dollar_lbl = tk.Label(content_frame,
                                      text = "$",
                                      font = ("Helvetica", 10))
-           
+
             # Create content for debt (d).
             d_type_1_lbl = tk.Label(content_frame,
                                     text = "Hire purchase (e.g. Afterpay):",
@@ -1724,7 +1701,7 @@ def open_main_code():
                                     text = "Fines:",
                                     font=("Helvetica", 15, "bold"))
             d_calc_expenses_btn = tk.Button(content_frame,
-                                        text = f"Calculate total expenses:",
+                                        text = "Calculate total expenses:",
                                         font = ("Helvetica", 15, "bold"),
                                         bg = "gold",
                                         command = d_calculate_total_expenses)
@@ -1740,7 +1717,6 @@ def open_main_code():
             d_dollar_lbl = tk.Label(content_frame,
                                     text = "$",
                                     font = ("Helvetica", 10))
-           
 
             # Create content for university related expenses (c).
             e_type_1_lbl = tk.Label(content_frame,
@@ -1753,10 +1729,12 @@ def open_main_code():
                                     text = "Vet:",
                                     font=("Helvetica", 15, "bold"))
             e_calc_expenses_btn = tk.Button(content_frame,
-                                        	text = f"Calculate total expenses:",
+                                        	text = "Calculate total "
+                                                    "expenses:",
                                             font = ("Helvetica", 15, "bold"),
                                             bg = "gold",
-                                            command = e_calculate_total_expenses)
+                                            command =
+                                            e_calculate_total_expenses)
             for i in range(87, 90):
                 e_dollar_sign = ttk.Label(content_frame,
                                          text = "$",
@@ -1769,7 +1747,7 @@ def open_main_code():
             e_dollar_lbl = tk.Label(content_frame,
                                      text = "$",
                                      font = ("Helvetica", 10))
-           
+
             # Create content for wants/flexible expenses (f).
             f_type_1_lbl = tk.Label(content_frame,
                                     text = "Savings:",
@@ -1802,7 +1780,7 @@ def open_main_code():
                                     text = "Other (e.g. Vape products):",
                                     font = ("Helvetica", 15, "bold"))
             f_calc_expenses_btn = tk.Button(content_frame,
-                                    text = f"Calculate total expenses:",
+                                    text = "Calculate total expenses:",
                                     font = ("Helvetica", 15, "bold"),
                                     bg = "gold",
                                     command = f_calculate_total_expenses)
@@ -1833,7 +1811,7 @@ def open_main_code():
                                  fg = "black",
                                  bg = "gold",
                                  command = expenses_next)
-           
+
             # Declare a, b, c, d, e, and f expenses types as string variables.
             a_type_1 = tk.StringVar()
             a_type_2 = tk.StringVar()
@@ -2576,7 +2554,7 @@ def open_main_code():
                                 fg = "black",
                                 bg = "grey",
                                 command = open_profile)
-        exit = tk.Button(expenses_window,
+        exit_btn = tk.Button(expenses_window,
                          text = "Exit",
                          width = 10,
                          height = 2,
@@ -2605,7 +2583,7 @@ def open_main_code():
                                 text = "My insights",
                                 command = insights_message)
         # Income image.
-        image = Image.open("income icon.png")
+        image = Image.open("income_image.png")
         resize_image = image.resize((50, 50))
         img = ImageTk.PhotoImage(resize_image)
         income_image = tk.Label(image = img,
@@ -2629,7 +2607,7 @@ def open_main_code():
         insights_image.image = img
 
         # Create expenses table.
-        create_table(expenses_window)
+        create_table()
 
         # Create Window Resizing Configuration.
         expenses_window.columnconfigure(0, weight=1)
@@ -2641,7 +2619,7 @@ def open_main_code():
         canvas.create_window((0, 0), window = content_frame, anchor = "nw")
         canvas.grid(row=0, column=0, sticky="nsew")
         scrollbar.grid(row=0, column=1, sticky="ns")
-       
+
         # Place labels, buttons, and images in a position.
         title.place(x = 200, y = 150)
         description_lbl.place(x = 200, y = 220)
@@ -2659,7 +2637,7 @@ def open_main_code():
         open_tips_btn.place(x = 632, y = 40)
         open_help_btn.place(x = 826, y = 40)
         profile_btn.place(x = 1020, y = 40)
-        exit.place(x = 1110, y = 40)
+        exit_btn.place(x = 1110, y = 40)
         back_btn.place(x = 150, y = 700)
 
         expenses_window.mainloop()
@@ -2690,7 +2668,7 @@ def open_main_code():
                                    + "making extra payments towards debt.",
                                 justify = LEFT)
             message.place(x = 200, y = 220)
-           
+
         def equal_message():
             """Function to display equal income and expenses message."""
             message = tk.Label(insights_window,
@@ -2703,7 +2681,7 @@ def open_main_code():
                                + "where it is not essential.",
                                justify = LEFT)
             message.place(x = 200, y = 220)
-           
+
         def deficit_message():
             """Function to display income defict message."""
             message = tk.Label(insights_window,
@@ -2731,7 +2709,7 @@ def open_main_code():
             weekly_e_expenses = None
             weekly_f_expenses = None
             difference = None
-            with open("User_finance_info.txt", "r") as file:
+            with open("user_finance_info.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
                     if "Weekly total income: " in line:
@@ -2761,7 +2739,7 @@ def open_main_code():
                     elif "Difference: " in line:
                         parts = line.split(':', 1)
                         difference = parts[1].strip()
-                       
+
             return ((float(weekly_total_income)),
                     (float(weekly_total_expenses)),
                     (float(weekly_a_expenses)),
@@ -2836,7 +2814,7 @@ def open_main_code():
                                 fg = "black",
                                 bg = "grey",
                                 command = open_profile)
-        exit = tk.Button(insights_window,
+        exit_btn = tk.Button(insights_window,
                         text = "Exit",
                         width = 10,
                         height = 2,
@@ -2865,7 +2843,7 @@ def open_main_code():
                                  text = "My insights",
                                  font = underlined_font)
         # Income image.
-        image = Image.open("income icon.png")
+        image = Image.open("income_image.png")
         resize_image = image.resize((50, 50))
         img = ImageTk.PhotoImage(resize_image)
         income_image = tk.Label(image = img,
@@ -2912,12 +2890,12 @@ def open_main_code():
                                       text = f"Difference ${difference:.2f}",
                                       font = ("Helvetica", 15))
         outcome_lbl = tk.Label(insights_window,
-                               text = f"Weekly Totals:\n- Income $"
+                               text = "Weekly Totals:\n- Income $"
                                + f"{weekly_total_income:.2f}\n- Expenses "
                                + f"${weekly_total_expenses:.2f}",
                                font = ("Helvetica", 15),
                                justify = LEFT)
-       
+
         # Create pie chart to display expenses.
         expense_categories = ["Household and Living", "Vehicle Related",
                               "University Related", "Debt", "Pet Related",
@@ -2957,7 +2935,7 @@ def open_main_code():
         open_tips_btn.place(x = 632, y = 40)
         open_help_btn.place(x = 826, y = 40)
         profile_btn.place(x = 1020, y = 40)
-        exit.place(x = 1110, y = 40)
+        exit_btn.place(x = 1110, y = 40)
         back_btn.place(x = 150, y = 700)
         canvas.get_tk_widget().place(x = 390, y = 300)
 
@@ -2998,17 +2976,17 @@ def open_main_code():
                 confirm_btn.pack()
                 profile_window.destroy()
 
-        def read_recent_users(filename):
+        def read_recent_users():
             """Reads and returns the most recent line from a file."""
-            with open("recent_users.txt", 'r') as file:
+            with open("recent_users.txt", "r") as file:
                 lines = file.readlines()
                 return lines[-1].strip()
-           
+
         def get_user_info():
             """Read the user information from existing users and reassign it
             to its original belonging variables.
             """
-            with open("Existing Users.txt", "r") as file:
+            with open("existing_users.txt", "r") as file:
                 lines = file.readlines()
                 for i, line in enumerate(lines):
                     if username in line:
@@ -3039,8 +3017,8 @@ def open_main_code():
         profile_window.geometry("300x350")
         profile_window.title("Profile")
         profile_window.resizable(False, False)
-       
-        username = read_recent_users("recent_users.txt")
+
+        username = read_recent_users()
         first_name, last_name, formatted_birthdate, tertiary_status_words, \
         knowledge_words = get_user_info()
 
@@ -3053,7 +3031,7 @@ def open_main_code():
                             text = "Profile:",
                             font = ("Helvetica", 15),
                             bg = "CadetBlue2")
-        exit = tk.Button(profile_window,
+        exit_btn = tk.Button(profile_window,
                         text = "Exit",
                         width = 10,
                         height = 2,
@@ -3089,11 +3067,11 @@ def open_main_code():
                                 fg = "black",
                                 bg = "firebrick1",
                                 command = signout)
-   
+
         # Place window content.
         canvas.place(x = 0, y = 20)
         title_lbl.place(x = 10, y = 34)
-        exit.place(x = 200, y = 27)
+        exit_btn.place(x = 200, y = 27)
         signout_btn.place(x = 120, y = 315)
         first_name_lbl.place(x = 20, y = 100)
         last_name_lbl.place(x = 20, y = 130)
@@ -3176,14 +3154,14 @@ def open_main_code():
                                 fg = "black",
                                 bg = "grey",
                                 command = open_profile)
-        exit = tk.Button(about_window,
+        exit_btn = tk.Button(about_window,
                          text = "Exit",
                          width = 10,
                          height = 2,
                          fg = "black",
                          bg = "grey",
                          command = exit_about)
-       
+
         # Create window content.
         intro_label = tk.Label(about_window,
                                text = "Introduction: A budget is a "
@@ -3248,7 +3226,7 @@ def open_main_code():
         open_tips_btn.place(x = 632, y = 40)
         open_help_btn.place(x = 826, y = 40)
         profile_btn.place(x = 1020, y = 40)
-        exit.place(x = 1110, y = 40)
+        exit_btn.place(x = 1110, y = 40)
         start_btn.place(x = 800, y = 290)
 
         about_window.mainloop()
@@ -3450,14 +3428,14 @@ def open_main_code():
                             fg = "black",
                             bg = "grey",
                             command = open_profile)
-    exit = tk.Button(home_window,
+    exit_btn = tk.Button(home_window,
                      text = "Exit",
                      width = 10,
                      height = 2,
                      fg = "black",
                      bg = "grey",
                      command = popup)
-    image = Image.open("Lean-Budgeting-Part-One 1.png")
+    image = Image.open("budget_image.png")
     resize_image = image.resize((1200, 250))
     img = ImageTk.PhotoImage(resize_image)
     label1 = Label(image = img)
@@ -3473,7 +3451,7 @@ def open_main_code():
     open_tips_btn.place(x = 632, y = 40)
     open_help_btn.place(x = 826, y = 40)
     profile_btn.place(x = 1020, y = 40)
-    exit.place(x = 1110, y = 40)
+    exit_btn.place(x = 1110, y = 40)
     start_btn.place(x = 800, y = 290)
 
     home_window.mainloop()
@@ -3522,3 +3500,4 @@ def insights_to_main():
 
 # Start the application.
 open_first_window()
+first_window = tk.Tk()
